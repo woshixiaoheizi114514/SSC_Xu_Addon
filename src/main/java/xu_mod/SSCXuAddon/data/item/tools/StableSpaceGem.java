@@ -17,8 +17,6 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.UseAction;
 import net.minecraft.world.World;
-import net.onixary.shapeShifterCurseFabric.player_form.PlayerFormBase;
-import net.onixary.shapeShifterCurseFabric.player_form.ability.RegPlayerFormComponent;
 import org.jetbrains.annotations.Nullable;
 import xu_mod.SSCXuAddon.init.Init_Form;
 import xu_mod.SSCXuAddon.init.Init_Item;
@@ -52,9 +50,8 @@ public class StableSpaceGem extends Item implements Vanishable {
     public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
         if (user instanceof PlayerEntity player && !world.isClient) {
             // 我认为就一种形态需要用这种方式变身 就不拆成函数吧
-            PlayerFormBase form = RegPlayerFormComponent.PLAYER_FORM.get(user).getCurrentForm();
             if (!user.isSneaking()) {
-                InventoryMenuUtils.openPlayerSpaceBag(player, Init_Form.AllayEngineer.equals(form) ? 3 : 2);
+                InventoryMenuUtils.openPlayerSpaceBag(player, Init_Form.AllayEngineer.isPlayerForm(player) ? 3 : 2);
                 world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.BLOCK_ENDER_CHEST_OPEN, SoundCategory.PLAYERS, 1.0F, 1.0F);
             } else {
                 EnderChestInventory enderChestInventory = player.getEnderChestInventory();

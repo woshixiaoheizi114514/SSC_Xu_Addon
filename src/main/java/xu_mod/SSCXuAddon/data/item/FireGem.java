@@ -17,10 +17,6 @@ import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.UseAction;
 import net.minecraft.world.World;
 import net.onixary.shapeShifterCurseFabric.mana.ManaUtils;
-import net.onixary.shapeShifterCurseFabric.player_form.PlayerFormBase;
-import net.onixary.shapeShifterCurseFabric.player_form.RegPlayerForms;
-import net.onixary.shapeShifterCurseFabric.player_form.ability.RegPlayerFormComponent;
-import net.onixary.shapeShifterCurseFabric.player_form.transform.TransformManager;
 import org.jetbrains.annotations.Nullable;
 import xu_mod.SSCXuAddon.init.Init_Form;
 import xu_mod.SSCXuAddon.powers.LeveledManaPower;
@@ -51,8 +47,7 @@ public class FireGem extends Item {
     @Override
     public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
         if (user instanceof PlayerEntity player && !world.isClient) {
-            PlayerFormBase form = RegPlayerFormComponent.PLAYER_FORM.get(user).getCurrentForm();
-            if (Init_Form.FamiliarFoxPurify.equals(form)) {
+            if (Init_Form.FamiliarFoxPurify.isPlayerForm(player)) {
                 player.heal(player.getMaxHealth() * 0.25f);  // 回复 25% 的血量
                 ManaUtils.gainPlayerMana(player, ManaUtils.getPlayerMaxMana(player));  // 回复全部魔力
                 PowerHolderComponent.getPowers(player, LeveledManaPower.class).forEach(power -> {

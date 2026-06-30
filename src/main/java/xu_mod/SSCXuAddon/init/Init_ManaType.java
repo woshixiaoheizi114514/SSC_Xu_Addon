@@ -30,12 +30,12 @@ public class Init_ManaType {
 
     public static Identifier MC_IsCursedMoonDay = ManaRegistries.registerManaConditionType(
             ShapeShifterCurseFabric.identifier("is_cursed_moon_day"),
-            (player) -> CursedMoon.isCursedMoon(player.getWorld())
+            (player) -> CursedMoon.isCursedMoonDay(player.getWorld())
     );
 
     public static Identifier MC_IsNotCursedMoonDay = ManaRegistries.registerManaConditionType(
             ShapeShifterCurseFabric.identifier("is_cursed_moon_day"),
-            (player) -> !CursedMoon.isCursedMoon(player.getWorld())
+            (player) -> !CursedMoon.isCursedMoonDay(player.getWorld())
     );
 
     public static Identifier MC_UnderSun = ManaRegistries.registerManaConditionType(
@@ -365,6 +365,19 @@ public class Init_ManaType {
             ),
             ManaRegistries.EMPTY_MANA_HANDLER
     );
+
+    static {
+        ManaRegistries.getManaRegenModifier(ManaRegistries.FAMILIAR_FOX_MANA).add(
+                SSCXuAddon.identifier("creative"),
+                MC_IsCreative,
+                new ManaUtils.Modifier(0d, 1.0d, 1000d)  // +20000 per sec
+        );
+        ManaRegistries.getManaRegenModifier(ManaRegistries.WEB_RESOURCE).add(
+                SSCXuAddon.identifier("creative"),
+                MC_IsCreative,
+                new ManaUtils.Modifier(0d, 1.0d, 1000d)  // +20000 per sec
+        );
+    }
 
 
     public static void init() {

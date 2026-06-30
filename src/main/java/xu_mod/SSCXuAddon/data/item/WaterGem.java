@@ -1,6 +1,5 @@
 package xu_mod.SSCXuAddon.data.item;
 
-import io.github.apace100.apoli.component.PowerHolderComponent;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
@@ -8,8 +7,6 @@ import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
@@ -17,13 +14,10 @@ import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.UseAction;
 import net.minecraft.world.World;
 import net.onixary.shapeShifterCurseFabric.mana.ManaUtils;
-import net.onixary.shapeShifterCurseFabric.player_form.PlayerFormBase;
 import net.onixary.shapeShifterCurseFabric.player_form.RegPlayerForms;
-import net.onixary.shapeShifterCurseFabric.player_form.ability.RegPlayerFormComponent;
-import net.onixary.shapeShifterCurseFabric.player_form.transform.TransformManager;
+import net.onixary.shapeShifterCurseFabric.player_form.utils.TransformManager;
 import org.jetbrains.annotations.Nullable;
 import xu_mod.SSCXuAddon.init.Init_Form;
-import xu_mod.SSCXuAddon.powers.LeveledManaPower;
 
 import java.util.List;
 
@@ -53,12 +47,11 @@ public class WaterGem extends Item {
     @Override
     public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
         if (user instanceof PlayerEntity player && !world.isClient) {
-            PlayerFormBase form = RegPlayerFormComponent.PLAYER_FORM.get(user).getCurrentForm();
-            if (RegPlayerForms.AXOLOTL_3.equals(form)) {
+            if (RegPlayerForms.AXOLOTL_3.isPlayerForm(player)) {
                 player.sendMessage(Text.translatable("message.ssc_xu_addon.item.water_gem.special_form").formatted(Formatting.YELLOW), false);
-                TransformManager.handleDirectTransform(player, Init_Form.AxolotlSeaKing, false);
+                TransformManager.startTransform(player, Init_Form.AxolotlSeaKing, null);
             }
-            else if (Init_Form.AxolotlSeaKing.equals(form)) {
+            else if (Init_Form.AxolotlSeaKing.isPlayerForm(player)) {
                 ManaUtils.gainPlayerMana(player, 10000);
                 ManaUtils.gainPlayerManaWithTime(player, 1, 300);
                 player.getItemCooldownManager().set(this, 600);

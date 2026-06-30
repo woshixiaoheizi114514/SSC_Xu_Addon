@@ -12,8 +12,7 @@ import net.minecraft.util.Formatting;
 import net.minecraft.world.World;
 import net.minecraft.world.explosion.Explosion;
 import net.onixary.shapeShifterCurseFabric.player_form.RegPlayerForms;
-import net.onixary.shapeShifterCurseFabric.player_form.ability.RegPlayerFormComponent;
-import net.onixary.shapeShifterCurseFabric.player_form.transform.TransformManager;
+import net.onixary.shapeShifterCurseFabric.player_form.utils.TransformManager;
 import xu_mod.SSCXuAddon.utils.Misc.ExplosionBehaviorExceptBreakBlock;
 
 public class SuperHolyApple extends Item {
@@ -28,8 +27,8 @@ public class SuperHolyApple extends Item {
             return FinalStack;
         }
         if (user instanceof PlayerEntity player) {
-            if (RegPlayerForms.ORIGINAL_SHIFTER.equals(RegPlayerFormComponent.PLAYER_FORM.get(player).getCurrentForm())) {
-                TransformManager.handleDirectTransform(player, RegPlayerForms.ORIGINAL_BEFORE_ENABLE, false);
+            if (RegPlayerForms.ORIGINAL_SHIFTER.isPlayerForm(player)) {
+                TransformManager.startTransform(player, RegPlayerForms.ORIGINAL_BEFORE_ENABLE, null);
                 player.sendMessage(Text.translatable("message.ssc_xu_addon.item.super_holy_apple.effect").formatted(Formatting.YELLOW), false);
                 return FinalStack;
             } else {

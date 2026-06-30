@@ -17,10 +17,8 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.UseAction;
 import net.minecraft.world.World;
-import net.onixary.shapeShifterCurseFabric.player_form.PlayerFormBase;
 import net.onixary.shapeShifterCurseFabric.player_form.RegPlayerForms;
-import net.onixary.shapeShifterCurseFabric.player_form.ability.RegPlayerFormComponent;
-import net.onixary.shapeShifterCurseFabric.player_form.transform.TransformManager;
+import net.onixary.shapeShifterCurseFabric.player_form.utils.TransformManager;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import xu_mod.SSCXuAddon.init.Init_Form;
@@ -47,8 +45,7 @@ public class UndeadEssence extends Item {
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         if (!world.isClient) {
-            PlayerFormBase form = RegPlayerFormComponent.PLAYER_FORM.get(user).getCurrentForm();
-            if (RegPlayerForms.SPIDER_3.equals(form)) {
+            if (RegPlayerForms.SPIDER_3.isPlayerForm(user)) {
                 user.setCurrentHand(hand);
                 return TypedActionResult.consume(user.getStackInHand(hand));
             }
@@ -59,10 +56,9 @@ public class UndeadEssence extends Item {
     @Override
     public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
         if (user instanceof PlayerEntity player && !world.isClient) {
-            PlayerFormBase form = RegPlayerFormComponent.PLAYER_FORM.get(user).getCurrentForm();
-            if (RegPlayerForms.SPIDER_3.equals(form)) {
+            if (RegPlayerForms.SPIDER_3.isPlayerForm(player)) {
                 player.sendMessage(Text.translatable("message.ssc_xu_addon.item.undead_essence.special_form").formatted(Formatting.YELLOW), false);
-                TransformManager.handleDirectTransform(player, Init_Form.SpiderUndead, false);
+                TransformManager.startTransform(player, Init_Form.SpiderUndead, null);
                 if (!player.getAbilities().creativeMode) {
                     stack.decrement(1);
                 }

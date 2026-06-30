@@ -11,8 +11,6 @@ import net.minecraft.util.Formatting;
 import net.minecraft.world.World;
 import net.onixary.shapeShifterCurseFabric.items.accessory.AccessoryItem;
 import net.onixary.shapeShifterCurseFabric.mana.ManaUtils;
-import net.onixary.shapeShifterCurseFabric.player_form.PlayerFormBase;
-import net.onixary.shapeShifterCurseFabric.player_form.ability.FormAbilityManager;
 import xu_mod.SSCXuAddon.init.Init_Form;
 
 import java.util.List;
@@ -32,8 +30,7 @@ public class MoistureKeptCharm extends AccessoryItem {
     public void accessoryTick(ItemStack stack, LivingEntity accessoryOwner, SlotData slotData) {
         // 涉及到大量数据读取 而且没法缓存 所以减缓一下执行速度
         if (accessoryOwner.age % 20 == 0 && accessoryOwner instanceof PlayerEntity player) {
-            PlayerFormBase form = FormAbilityManager.getForm(player); // 之前整幻化功能时发现了这个API
-            if (!Init_Form.AxolotlSeaKing.equals(form)) {
+            if (!Init_Form.AxolotlSeaKing.isPlayerForm(player)) {
                 return;
             }
             double mana_max = ManaUtils.getPlayerMaxMana(player);

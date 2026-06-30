@@ -4,14 +4,11 @@ import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentTarget;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.onixary.shapeShifterCurseFabric.player_form.PlayerFormBase;
-import net.onixary.shapeShifterCurseFabric.player_form.ability.RegPlayerFormComponent;
+import net.onixary.shapeShifterCurseFabric.player_form.IForm;
+import net.onixary.shapeShifterCurseFabric.player_form.utils.FormUtils;
 import xu_mod.SSCXuAddon.utils.Utils;
 
 public class ShapeProtection extends Enchantment {
@@ -41,27 +38,9 @@ public class ShapeProtection extends Enchantment {
             return 2.0f;
         }
         if (target instanceof PlayerEntity player) {
-            PlayerFormBase form = RegPlayerFormComponent.PLAYER_FORM.get(player).getCurrentForm();
-            switch (form.getPhase()) {
-                case PHASE_0 -> {
-                    return 0.5f;
-                }
-                case PHASE_1 -> {
-                    return 1.0f;
-                }
-                case PHASE_2 -> {
-                    return 1.5f;
-                }
-                case PHASE_3 -> {
-                    return 2.0f;
-                }
-                case PHASE_SP -> {
-                    return 1.0f;
-                }
-                case PHASE_CLEAR -> {
-                    return 0.0f;
-                }
-            }
+            IForm form = FormUtils.getPlayerForm(player);
+            float base = FormUtils.SpecialForm.hasFlag(form) ? 0.5f : 0.0f;
+            return Math.max(0.0f, base + form.getFormTier() * 0.5f);
         }
         return 0.0f;
     }

@@ -1,6 +1,5 @@
 package xu_mod.SSCXuAddon.data.item;
 
-import io.github.apace100.apoli.component.PowerHolderComponent;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
@@ -16,12 +15,7 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.UseAction;
 import net.minecraft.world.World;
-import net.onixary.shapeShifterCurseFabric.mana.ManaUtils;
-import net.onixary.shapeShifterCurseFabric.player_form.PlayerFormBase;
-import net.onixary.shapeShifterCurseFabric.player_form.ability.RegPlayerFormComponent;
 import org.jetbrains.annotations.Nullable;
-import xu_mod.SSCXuAddon.init.Init_Form;
-import xu_mod.SSCXuAddon.powers.LeveledManaPower;
 
 import java.util.List;
 

@@ -1,24 +1,33 @@
 package xu_mod.SSCXuAddon.init;
 
 import net.onixary.shapeShifterCurseFabric.player_form.*;
+import net.onixary.shapeShifterCurseFabric.player_form.utils.FormUtils;
 import xu_mod.SSCXuAddon.data.form.*;
 import xu_mod.SSCXuAddon.SSCXuAddon;
 
+import static net.onixary.shapeShifterCurseFabric.player_form.NormalForm.NORMAL_SCALE_FUNC_BUILDER;
+
 public class Init_Form {
-    public static PlayerFormBase FamiliarFoxPurify = RegPlayerForms.registerPlayerForm(new FamiliarFoxPurify(SSCXuAddon.identifier("familiar_fox_purify")).setPhase(PlayerFormPhase.PHASE_3));
-    public static PlayerFormGroup FamiliarFoxPurifyGroup = RegPlayerForms.registerPlayerFormGroup((new PlayerFormGroup(SSCXuAddon.identifier("familiar_fox_purify_form")).addForm(FamiliarFoxPurify, 3)));
-    public static PlayerFormBase BatVampire = RegPlayerForms.registerPlayerForm(new BatVampire(SSCXuAddon.identifier("bat_vampire")).setPhase(PlayerFormPhase.PHASE_3).setHasSlowFall(true).setOverrideHandAnim(true));
-    public static PlayerFormGroup BatVampireGroup = RegPlayerForms.registerPlayerFormGroup((new PlayerFormGroup(SSCXuAddon.identifier("bat_vampire_form")).addForm(BatVampire, 3)));
-    public static PlayerFormBase FeralCatVF = RegPlayerForms.registerPlayerForm(new CatVF(SSCXuAddon.identifier("feral_cat_vf")).setPhase(PlayerFormPhase.PHASE_SP).setBodyType(PlayerFormBodyType.FERAL));
-    public static PlayerFormGroup FeralCatVFGroup = RegPlayerForms.registerPlayerFormGroup((new PlayerFormGroup(SSCXuAddon.identifier("feral_cat_vf_form")).addForm(FeralCatVF, 5)));
-    public static PlayerFormBase AllayEngineer = RegPlayerForms.registerPlayerForm(new AllayEngineer(SSCXuAddon.identifier("allay_engineer")).setPhase(PlayerFormPhase.PHASE_SP));
-    public static PlayerFormGroup AllayEngineerGroup = RegPlayerForms.registerPlayerFormGroup((new PlayerFormGroup(SSCXuAddon.identifier("allay_engineer_form")).addForm(AllayEngineer, 5)));
-    public static PlayerFormBase OcelotJungle = RegPlayerForms.registerPlayerForm(new OcelotJungle(SSCXuAddon.identifier("ocelot_jungle")).setPhase(PlayerFormPhase.PHASE_3));
-    public static PlayerFormGroup OcelotJungleGroup = RegPlayerForms.registerPlayerFormGroup((new PlayerFormGroup(SSCXuAddon.identifier("ocelot_jungle_form")).addForm(OcelotJungle, 3)));
-    public static PlayerFormBase AxolotlSeaKing = RegPlayerForms.registerPlayerForm(new AxolotlSeaKing(SSCXuAddon.identifier("axolotl_sea_king")).setPhase(PlayerFormPhase.PHASE_3));
-    public static PlayerFormGroup AxolotlSeaKingGroup = RegPlayerForms.registerPlayerFormGroup((new PlayerFormGroup(SSCXuAddon.identifier("axolotl_sea_king_form")).addForm(AxolotlSeaKing, 3)));
-    public static PlayerFormBase SpiderUndead = RegPlayerForms.registerPlayerForm(new SpiderUndead(SSCXuAddon.identifier("spider_undead")).setPhase(PlayerFormPhase.PHASE_3));
-    public static PlayerFormGroup SpiderUndeadGroup = RegPlayerForms.registerPlayerFormGroup((new PlayerFormGroup(SSCXuAddon.identifier("spider_undead_form")).addForm(SpiderUndead, 3)));
+    public static FormUtils.FlagData NoFormStoreStone = new FormUtils.FlagData("no_form_store_stone");
+
+    public static IForm FamiliarFoxPurify = RegPlayerForms.registerPlayerForm(new FamiliarFoxPurify(SSCXuAddon.identifier("familiar_fox_purify")).formFlag(FormUtils.FinalForm, FormUtils.InhibitorImmune, FormUtils.NoInstinct, FormUtils.NoCursedMoonEffect).bodyType(PlayerFormBodyType.FERAL).applyScaleFunc(NORMAL_SCALE_FUNC_BUILDER.apply(0.45f,0.6f)));
+    public static IFormGroup FamiliarFoxPurifyGroup = RegPlayerForms.registerPlayerFormGroup((new NormalGroup(SSCXuAddon.identifier("familiar_fox_purify_form")).registerForm(4, 1, FamiliarFoxPurify)));
+    public static IForm BatVampire = RegPlayerForms.registerPlayerForm(new BatVampire(SSCXuAddon.identifier("bat_vampire")).formFlag(FormUtils.FinalForm, FormUtils.InhibitorImmune, FormUtils.NoInstinct, FormUtils.NoCursedMoonEffect).applyScaleFunc(NORMAL_SCALE_FUNC_BUILDER.apply(0.5f, 0.6f)));
+    public static IFormGroup BatVampireGroup = RegPlayerForms.registerPlayerFormGroup((new NormalGroup(SSCXuAddon.identifier("bat_vampire_form")).registerForm(4, 1, BatVampire)));
+    public static IForm FeralCatVF = RegPlayerForms.registerPlayerForm(new CatVF(SSCXuAddon.identifier("feral_cat_vf")).formFlag(FormUtils.FinalForm, FormUtils.InhibitorImmune, FormUtils.NoInstinct, FormUtils.NoCursedMoonEffect).bodyType(PlayerFormBodyType.FERAL).applyScaleFunc(NORMAL_SCALE_FUNC_BUILDER.apply(0.55f,0.6f)));
+    public static IFormGroup FeralCatVFGroup = RegPlayerForms.registerPlayerFormGroup((new NormalGroup(SSCXuAddon.identifier("feral_cat_vf_form")).registerForm(4, 1, FeralCatVF)));
+    public static IForm AllayEngineer = RegPlayerForms.registerPlayerForm(new AllayEngineer(SSCXuAddon.identifier("allay_engineer")).formFlag(FormUtils.FinalForm, FormUtils.InhibitorImmune, FormUtils.NoInstinct, FormUtils.NoCursedMoonEffect).applyScaleFunc(NORMAL_SCALE_FUNC_BUILDER.apply(0.35f,1.0f)));
+    public static IFormGroup AllayEngineerGroup = RegPlayerForms.registerPlayerFormGroup((new NormalGroup(SSCXuAddon.identifier("allay_engineer_form")).registerForm(4, 1, AllayEngineer)));
+    public static IForm OcelotJungle = RegPlayerForms.registerPlayerForm(new OcelotJungle(SSCXuAddon.identifier("ocelot_jungle")).formFlag(FormUtils.FinalForm, FormUtils.InhibitorImmune, FormUtils.NoInstinct, FormUtils.NoCursedMoonEffect).bodyType(PlayerFormBodyType.FERAL).applyScaleFunc(NORMAL_SCALE_FUNC_BUILDER.apply(0.75f, 0.6f)));
+    public static IFormGroup OcelotJungleGroup = RegPlayerForms.registerPlayerFormGroup((new NormalGroup(SSCXuAddon.identifier("ocelot_jungle_form")).registerForm(4, 1, OcelotJungle)));
+    public static IForm AxolotlSeaKing = RegPlayerForms.registerPlayerForm(new AxolotlSeaKing(SSCXuAddon.identifier("axolotl_sea_king")).formFlag(FormUtils.FinalForm, FormUtils.InhibitorImmune, FormUtils.NoInstinct, FormUtils.NoCursedMoonEffect).applyScaleFunc(NORMAL_SCALE_FUNC_BUILDER.apply(0.9f, 1.0f)));
+    public static IFormGroup AxolotlSeaKingGroup = RegPlayerForms.registerPlayerFormGroup((new NormalGroup(SSCXuAddon.identifier("axolotl_sea_king_form")).registerForm(4, 1, AxolotlSeaKing)));
+    public static IForm SpiderUndead = RegPlayerForms.registerPlayerForm(new SpiderUndead(SSCXuAddon.identifier("spider_undead")).formFlag(FormUtils.FinalForm, FormUtils.InhibitorImmune, FormUtils.NoInstinct, FormUtils.NoCursedMoonEffect).applyScaleFunc(NORMAL_SCALE_FUNC_BUILDER.apply(0.9f,1.0f)));
+    public static IFormGroup SpiderUndeadGroup = RegPlayerForms.registerPlayerFormGroup((new NormalGroup(SSCXuAddon.identifier("spider_undead_form")).registerForm(4, 1, SpiderUndead)));
+
+    static {
+        ((NormalForm) RegPlayerForms.ORIGINAL_BEFORE_ENABLE).appendFlag(NoFormStoreStone);
+    }
 
     public static void init() {}
 }

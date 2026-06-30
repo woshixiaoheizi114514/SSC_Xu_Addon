@@ -5,29 +5,16 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.EnderChestInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.loot.LootTable;
-import net.minecraft.loot.context.LootContextParameterSet;
-import net.minecraft.loot.context.LootContextParameters;
-import net.minecraft.loot.context.LootContextTypes;
-import net.minecraft.screen.GenericContainerScreenHandler;
-import net.minecraft.screen.SimpleNamedScreenHandlerFactory;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.util.*;
 import net.minecraft.world.World;
 import net.onixary.shapeShifterCurseFabric.mana.ManaUtils;
-import net.onixary.shapeShifterCurseFabric.player_form.PlayerFormBase;
 import net.onixary.shapeShifterCurseFabric.player_form.RegPlayerForms;
-import net.onixary.shapeShifterCurseFabric.player_form.ability.RegPlayerFormComponent;
-import net.onixary.shapeShifterCurseFabric.player_form.transform.TransformManager;
+import net.onixary.shapeShifterCurseFabric.player_form.utils.TransformManager;
 import org.jetbrains.annotations.Nullable;
 import xu_mod.SSCXuAddon.init.Init_Form;
-import xu_mod.SSCXuAddon.utils.Inventory.InventoryMenuUtils;
 
 import java.util.List;
 
@@ -58,12 +45,11 @@ public class WindGem extends Item {
     @Override
     public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
         if (user instanceof PlayerEntity player && !world.isClient) {
-            PlayerFormBase form = RegPlayerFormComponent.PLAYER_FORM.get(user).getCurrentForm();
-            if (RegPlayerForms.OCELOT_3.equals(form)) {
+            if (RegPlayerForms.OCELOT_3.isPlayerForm(player)) {
                 player.sendMessage(Text.translatable("message.ssc_xu_addon.item.wind_gem.special_form").formatted(Formatting.YELLOW), false);
-                TransformManager.handleDirectTransform(player, Init_Form.OcelotJungle, false);
+                TransformManager.startTransform(player, Init_Form.OcelotJungle, null);
             }
-            else if (Init_Form.OcelotJungle.equals(form)) {
+            else if (Init_Form.OcelotJungle.isPlayerForm(player)) {
                 ManaUtils.gainPlayerMana(player, ManaUtils.getPlayerMaxMana(player));
                 player.addStatusEffect(new StatusEffectInstance(StatusEffects.SPEED, 2400, 1, false, true));
                 player.addStatusEffect(new StatusEffectInstance(StatusEffects.JUMP_BOOST, 2400, 1, false, true));

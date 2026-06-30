@@ -21,7 +21,7 @@
   },
   "cooldown": 100,
   "key": {
-    "key": "key.origins.primary_active"
+    "key": "key.shape-shifter-curse.active_skill_1"
   },
   "trigger_condition": {
     "type": "ssc_xu_addon:is_exhaustion",

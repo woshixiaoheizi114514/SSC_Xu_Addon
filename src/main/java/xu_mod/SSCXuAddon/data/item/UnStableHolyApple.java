@@ -12,11 +12,10 @@ import net.minecraft.util.Formatting;
 import net.minecraft.world.World;
 import net.minecraft.world.explosion.Explosion;
 import net.onixary.shapeShifterCurseFabric.cursed_moon.CursedMoon;
-import net.onixary.shapeShifterCurseFabric.player_form.PlayerFormBase;
+import net.onixary.shapeShifterCurseFabric.player_form.IForm;
 import net.onixary.shapeShifterCurseFabric.player_form.RegPlayerForms;
-import net.onixary.shapeShifterCurseFabric.player_form.ability.FormAbilityManager;
-import net.onixary.shapeShifterCurseFabric.player_form.ability.RegPlayerFormComponent;
-import net.onixary.shapeShifterCurseFabric.player_form.transform.TransformManager;
+import net.onixary.shapeShifterCurseFabric.player_form.utils.FormUtils;
+import net.onixary.shapeShifterCurseFabric.player_form.utils.TransformManager;
 import org.jetbrains.annotations.Nullable;
 import xu_mod.SSCXuAddon.init.Init_Form;
 import xu_mod.SSCXuAddon.utils.Misc.ExplosionBehaviorExceptBreakBlock;
@@ -26,12 +25,10 @@ public class UnStableHolyApple extends Item {
         super(settings);
     }
 
-    public @Nullable PlayerFormBase SpecialFormCovCheck(ItemStack stack, World world, PlayerEntity user) {
-        PlayerFormBase form = RegPlayerFormComponent.PLAYER_FORM.get(user).getCurrentForm();
-        if (form != null) {
-            if (form.equals(RegPlayerForms.FAMILIAR_FOX_3) && (CursedMoon.isCursedMoon(world) && CursedMoon.isNight(world))) {
-                return Init_Form.FamiliarFoxPurify;
-            }
+    public @Nullable IForm SpecialFormCovCheck(ItemStack stack, World world, PlayerEntity user) {
+        IForm form = FormUtils.getPlayerForm(user);
+        if (form.equals(RegPlayerForms.FAMILIAR_FOX_3) && (CursedMoon.isInCursedMoon(world))) {
+            return Init_Form.FamiliarFoxPurify;
         }
         return null;
     }
@@ -43,19 +40,19 @@ public class UnStableHolyApple extends Item {
             return FinalStack;
         }
         if (user instanceof PlayerEntity player) {
-            if (RegPlayerForms.ORIGINAL_BEFORE_ENABLE.equals(RegPlayerFormComponent.PLAYER_FORM.get(player).getCurrentForm())) {
+            if (RegPlayerForms.ORIGINAL_BEFORE_ENABLE.isPlayerForm(player)) {
                 return FinalStack;
             }
-            @Nullable PlayerFormBase form = SpecialFormCovCheck(stack, world, player);
+            @Nullable IForm form = SpecialFormCovCheck(stack, world, player);
             if (form != null) {
                 player.sendMessage(Text.translatable("message.ssc_xu_addon.item.unstable_holy_apple.special_form").formatted(Formatting.YELLOW), false);
-                TransformManager.handleDirectTransform(player, form, false);
+                TransformManager.startTransform(player, form, null);
                 return FinalStack;
             }
             // 95%爆炸 5%还原
             if (world.random.nextInt(100) < 5) {
                 player.sendMessage(Text.translatable("message.ssc_xu_addon.item.unstable_holy_apple.luck").formatted(Formatting.YELLOW), false);
-                TransformManager.handleDirectTransform(player, RegPlayerForms.ORIGINAL_SHIFTER, false);
+                TransformManager.startTransform(player, RegPlayerForms.ORIGINAL_SHIFTER, null);
             }
             else {
                 player.sendMessage(Text.translatable("message.ssc_xu_addon.item.unstable_holy_apple.bad_luck").formatted(Formatting.YELLOW), false);
@@ -63,7 +60,7 @@ public class UnStableHolyApple extends Item {
                 if (CursedMoon.isNight(world)) {
                     explosionPower += 1.0f;
                 }
-                if (CursedMoon.isCursedMoon(world)) {
+                if (CursedMoon.isCursedMoonDay(world)) {
                     explosionPower += 2.0f;
                 }
                 Explosion explosion = new Explosion(

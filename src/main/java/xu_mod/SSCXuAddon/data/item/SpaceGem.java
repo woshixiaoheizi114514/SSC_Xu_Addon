@@ -18,10 +18,8 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.util.*;
 import net.minecraft.world.World;
-import net.onixary.shapeShifterCurseFabric.player_form.PlayerFormBase;
 import net.onixary.shapeShifterCurseFabric.player_form.RegPlayerForms;
-import net.onixary.shapeShifterCurseFabric.player_form.ability.RegPlayerFormComponent;
-import net.onixary.shapeShifterCurseFabric.player_form.transform.TransformManager;
+import net.onixary.shapeShifterCurseFabric.player_form.utils.TransformManager;
 import org.jetbrains.annotations.Nullable;
 import xu_mod.SSCXuAddon.init.Init_Form;
 import xu_mod.SSCXuAddon.utils.Inventory.InventoryMenuUtils;
@@ -56,10 +54,9 @@ public class SpaceGem extends Item {
     public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
         if (user instanceof PlayerEntity player && !world.isClient) {
             // 我认为就一种形态需要用这种方式变身 就不拆成函数吧
-            PlayerFormBase form = RegPlayerFormComponent.PLAYER_FORM.get(user).getCurrentForm();
-            if (RegPlayerForms.ALLAY_SP.equals(form)) {
+            if (RegPlayerForms.ALLAY_SP.isPlayerForm(player)) {
                 player.sendMessage(Text.translatable("message.ssc_xu_addon.item.space_gem.special_form").formatted(Formatting.YELLOW), false);
-                TransformManager.handleDirectTransform(player, Init_Form.AllayEngineer, false);
+                TransformManager.startTransform(player, Init_Form.AllayEngineer, null);
                 if (!player.getAbilities().creativeMode) {
                     stack.decrement(1);
                 }
@@ -67,7 +64,7 @@ public class SpaceGem extends Item {
             else {
                 int r = world.random.nextInt(100);
                 if (r < 20) {  // 悦灵空间2级
-                    InventoryMenuUtils.openPlayerSpaceBag(player, Init_Form.AllayEngineer.equals(form) ? 3 : 2);
+                    InventoryMenuUtils.openPlayerSpaceBag(player, Init_Form.AllayEngineer.isPlayerForm(player) ? 3 : 2);
                     world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.BLOCK_ENDER_CHEST_OPEN, SoundCategory.PLAYERS, 1.0F, 1.0F);
                 } else if (r < 30) {  // 末影箱
                     EnderChestInventory enderChestInventory = player.getEnderChestInventory();

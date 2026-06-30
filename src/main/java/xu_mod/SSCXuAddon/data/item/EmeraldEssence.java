@@ -18,10 +18,8 @@ import net.minecraft.util.UseAction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.onixary.shapeShifterCurseFabric.minion.MinionRegister;
-import net.onixary.shapeShifterCurseFabric.player_form.PlayerFormBase;
 import net.onixary.shapeShifterCurseFabric.player_form.RegPlayerForms;
-import net.onixary.shapeShifterCurseFabric.player_form.ability.RegPlayerFormComponent;
-import net.onixary.shapeShifterCurseFabric.player_form.transform.TransformManager;
+import net.onixary.shapeShifterCurseFabric.player_form.utils.TransformManager;
 import org.jetbrains.annotations.Nullable;
 import xu_mod.SSCXuAddon.init.Init_Form;
 
@@ -52,11 +50,10 @@ public class EmeraldEssence extends Item {
     public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
         if (user instanceof PlayerEntity player && !world.isClient) {
             // 我认为就一种形态需要用这种方式变身 就不拆成函数吧
-            PlayerFormBase form = RegPlayerFormComponent.PLAYER_FORM.get(user).getCurrentForm();
-            if (RegPlayerForms.FERAL_CAT_SP.equals(form)) {
+            if (RegPlayerForms.FERAL_CAT_SP.isPlayerForm(player)) {
                 player.sendMessage(Text.translatable("message.ssc_xu_addon.item.emerald_essence.special_form").formatted(Formatting.YELLOW), false);
-                TransformManager.handleDirectTransform(player, Init_Form.FeralCatVF, false);
-            } else if (Init_Form.FeralCatVF.equals(form)) {
+                TransformManager.startTransform(player, Init_Form.FeralCatVF, null);
+            } else if (Init_Form.FeralCatVF.isPlayerForm(player)) {
                 // 召唤铁傀儡
                 BlockPos pos = MinionRegister.getNearbyEmptySpace(player.getWorld(), player.getRandom(), player.getBlockPos(), 7, 5, 3, 8);
                 if (pos == null) {

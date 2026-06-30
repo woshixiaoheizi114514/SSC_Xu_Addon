@@ -14,13 +14,14 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.util.*;
 import net.minecraft.world.World;
+import net.onixary.shapeShifterCurseFabric.data.CodexData;
 import net.onixary.shapeShifterCurseFabric.networking.ModPacketsS2CServer;
-import net.onixary.shapeShifterCurseFabric.player_form.PlayerFormBase;
-import net.onixary.shapeShifterCurseFabric.player_form.PlayerFormPhase;
+import net.onixary.shapeShifterCurseFabric.player_form.IForm;
 import net.onixary.shapeShifterCurseFabric.player_form.RegPlayerForms;
-import net.onixary.shapeShifterCurseFabric.player_form.ability.RegPlayerFormComponent;
-import net.onixary.shapeShifterCurseFabric.player_form.transform.TransformManager;
+import net.onixary.shapeShifterCurseFabric.player_form.utils.FormUtils;
+import net.onixary.shapeShifterCurseFabric.player_form.utils.TransformManager;
 import org.jetbrains.annotations.Nullable;
+import xu_mod.SSCXuAddon.init.Init_Form;
 
 import java.util.List;
 
@@ -51,36 +52,28 @@ public class FormStoreStone extends Item {
     @Override
     public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
         if (user instanceof ServerPlayerEntity player) {
-            PlayerFormBase form = RegPlayerFormComponent.PLAYER_FORM.get(user).getCurrentForm();
-            PlayerFormBase storedForm = getStoredForm(stack);
-            if (RegPlayerForms.ORIGINAL_BEFORE_ENABLE.equals(form)) {
+            IForm form = FormUtils.getPlayerForm(player);
+            IForm storedForm = getStoredForm(stack);
+            if (Init_Form.NoFormStoreStone.hasFlag(form)) {
                 return stack;
             }
-            // 由于一个Bug 不能用handleDirectTransform 后续更完拓展后修
-            if (storedForm != null && form.getPhase() != PlayerFormPhase.PHASE_CLEAR) {
-                TransformManager.setFormDirectly(player, storedForm);
+            if (storedForm != null && RegPlayerForms.ORIGINAL_SHIFTER.isPlayerForm(player)) {
+                TransformManager.startTransform(player, storedForm, null);
                 setStoredForm(stack, form);
-            } else if (storedForm == null && form.getPhase() != PlayerFormPhase.PHASE_CLEAR) {
-                TransformManager.setFormDirectly(player, RegPlayerForms.ORIGINAL_SHIFTER);
+            } else if (storedForm == null && !RegPlayerForms.ORIGINAL_SHIFTER.isPlayerForm(player)) {
+                TransformManager.startTransform(player, RegPlayerForms.ORIGINAL_SHIFTER, null);
                 setStoredForm(stack, form);
-            } else if (storedForm != null && form.getPhase() == PlayerFormPhase.PHASE_CLEAR) {
-                TransformManager.setFormDirectly(player, storedForm);
+            } else if (storedForm != null && RegPlayerForms.ORIGINAL_SHIFTER.isPlayerForm(player)) {
+                TransformManager.startTransform(player, storedForm, null);
                 setStoredForm(stack, null);
             }
             world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.ENTITY_EVOKER_PREPARE_SUMMON, SoundCategory.PLAYERS, 1.0F, 1.0F);
-            StatusEffectInstance darknessEffect = new StatusEffectInstance(StatusEffects.BLINDNESS, 60);
-            player.addStatusEffect(darknessEffect);
-            StatusEffectInstance nauseaEffect = new StatusEffectInstance(StatusEffects.NAUSEA, 100);
-            player.addStatusEffect(nauseaEffect);
-            StatusEffectInstance immobilityEffect = new StatusEffectInstance(StatusEffects.SLOWNESS, 100, 245);
-            player.addStatusEffect(immobilityEffect);
-            ModPacketsS2CServer.sendNoJumpTick(player, 100);
             player.getItemCooldownManager().set(this, 1200);
         }
         return stack;
     }
 
-    public static @Nullable PlayerFormBase getStoredFormReal(ItemStack stack) {
+    public static @Nullable IForm getStoredFormReal(ItemStack stack) {
         NbtCompound nbt = stack.getOrCreateNbt();
         if (nbt.contains("form")) {
             Identifier formID = Identifier.tryParse(nbt.get("form").asString());
@@ -92,18 +85,18 @@ public class FormStoreStone extends Item {
         return null;
     }
 
-    public static @Nullable PlayerFormBase getStoredForm(ItemStack stack) {
-        PlayerFormBase form = getStoredFormReal(stack);
-        if (form != null && form.getPhase() == PlayerFormPhase.PHASE_CLEAR) {
+    public static @Nullable IForm getStoredForm(ItemStack stack) {
+        IForm form = getStoredFormReal(stack);
+        if (form != null && (Init_Form.NoFormStoreStone.hasFlag(form) || RegPlayerForms.ORIGINAL_SHIFTER.isEquals(form))) {
             return null;
         }
         return form;
     }
 
-    public static void setStoredForm(ItemStack stack, @Nullable PlayerFormBase form) {
+    public static void setStoredForm(ItemStack stack, @Nullable IForm form) {
         NbtCompound nbt = stack.getOrCreateNbt();
         if (form != null) {
-            nbt.putString("form", form.FormID.toString());
+            nbt.putString("form", form.getFormID().toString());
         } else {
             nbt.remove("form");
         }
@@ -112,7 +105,7 @@ public class FormStoreStone extends Item {
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         tooltip.add(Text.translatable("item.ssc_xu_addon.form_store_stone.tooltip.1").formatted(Formatting.YELLOW));
-        PlayerFormBase form = getStoredForm(stack);
-        tooltip.add(Text.translatable("item.ssc_xu_addon.form_store_stone.tooltip.2", form == null ? "EMPTY" : form.getFormName().getString()).formatted(Formatting.YELLOW));
+        IForm form = getStoredForm(stack);
+        tooltip.add(Text.translatable("item.ssc_xu_addon.form_store_stone.tooltip.2", form == null ? "EMPTY" : form.getContentText(CodexData.ContentType.NAME).getString()).formatted(Formatting.YELLOW));
     }
 }

@@ -21,7 +21,7 @@
       {
         "type": "apoli:ingredient",
         "ingredient": {
-          "tag": "origins:ignore_diet"
+          "tag": "shape-shifter-curse:ignore_diet"
         },
         "inverted": true
       },
