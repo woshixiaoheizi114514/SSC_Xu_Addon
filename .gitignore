@@ -40,3 +40,5 @@ replay_*.log
 *.jfr
 /Tools/MaskProcessV2/Image/
 /Tools/MaskProcessV2/LayerData/
+*.pyc
+
