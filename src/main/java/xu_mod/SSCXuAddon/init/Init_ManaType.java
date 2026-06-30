@@ -367,16 +367,17 @@ public class Init_ManaType {
     );
 
     static {
-        ManaRegistries.getManaRegenModifier(ManaRegistries.FAMILIAR_FOX_MANA).add(
-                SSCXuAddon.identifier("creative"),
-                MC_IsCreative,
-                new ManaUtils.Modifier(0d, 1.0d, 1000d)  // +20000 per sec
-        );
-        ManaRegistries.getManaRegenModifier(ManaRegistries.WEB_RESOURCE).add(
-                SSCXuAddon.identifier("creative"),
-                MC_IsCreative,
-                new ManaUtils.Modifier(0d, 1.0d, 1000d)  // +20000 per sec
-        );
+        // 被自己坑了 待会打包完加一个API
+        // ManaRegistries.getManaRegenModifier(ManaRegistries.FAMILIAR_FOX_MANA).add(
+        //         SSCXuAddon.identifier("creative"),
+        //         MC_IsCreative,
+        //         new ManaUtils.Modifier(0d, 1.0d, 1000d)  // +20000 per sec
+        // );
+        // ManaRegistries.getManaRegenModifier(ManaRegistries.WEB_RESOURCE).add(
+        //         SSCXuAddon.identifier("creative"),
+        //         MC_IsCreative,
+        //         new ManaUtils.Modifier(0d, 1.0d, 1000d)  // +20000 per sec
+        // );
     }
 
 
