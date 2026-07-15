@@ -5,8 +5,10 @@
     "\n‘The unstable holy golden apple seems unable to dispel the curse from your body,\n",
     "The curse afflicting you is far more stubborn than imagined.\n",
     "However, fortunately, it has purged the witch’s magic from you.’\n",
-    "Yet, the physical alterations made by the witch’s magic cannot be reverted.\n",
-    "\nExclusive trinkets/tools：[Mana Boost Bracelet]"
+    "Yet, the physical alterations made by the witch’s magic cannot be reverted.\n"
+  ],
+  "codex.form.ssc_xu_addon.familiar_fox_purify.equip": [
+    "[Mana Boost Bracelet]"
   ],
   "codex.form.ssc_xu_addon.familiar_fox_purify.appearance": [
     "You appear largely identical to an ordinary wild red fox—except for the two large tails swaying unusually behind you.\n",
@@ -58,8 +60,10 @@
 
   "codex.form.ssc_xu_addon.bat_vampire.name": ["Bat (Vampire)"],
   "codex.form.ssc_xu_addon.bat_vampire.title": [
-    "\nBecause of that strange gem, a fervent thirst for blood now courses through your veins..",
-    "\n\nExclusive trinkets/tools：[Blood Amulet],[Blood Rage Gauntlets],[Sunveil Circlet],[Anchoring Grappling Hook],[Diamond Grip Claws]",["Blood Claws"]
+    "\nBecause of that strange gem, a fervent thirst for blood now courses through your veins.."
+  ],
+  "codex.form.ssc_xu_addon.bat_vampire.equip": [
+    "[Blood Amulet],[Blood Rage Gauntlets],[Sunveil Circlet],[Anchoring Grappling Hook],[Diamond Grip Claws],[Blood Claws]"
   ],
   "codex.form.ssc_xu_addon.bat_vampire.appearance": [
     "That mysterious gem has wrought changes to your body.\n",
@@ -115,8 +119,10 @@
 
   "codex.form.ssc_xu_addon.feral_cat_vf.name": ["Cat (Village Friend)"],
   "codex.form.ssc_xu_addon.feral_cat_vf.title": [
-    "\nBy absorbing the magic within Emerald Essence, emeralds have grown upon your body, and villagers now adore you.",
-    "\n\nExclusive trinkets/tools: [Charm of the Emerald], [Witch‘s Familiar Anklet]"
+    "\nBy absorbing the magic within Emerald Essence, emeralds have grown upon your body, and villagers now adore you."
+  ],
+  "codex.form.ssc_xu_addon.feral_cat_vf.equip": [
+    "[Charm of the Emerald], [Witch‘s Familiar Anklet]"
   ],
   "codex.form.ssc_xu_addon.feral_cat_vf.appearance": [
     "Your body has transformed into an elegant black cat, with fur as smooth as night and eyes gleaming with intelligence.\n",
@@ -155,8 +161,10 @@
 
   "codex.form.ssc_xu_addon.allay_engineer.name": ["Allay (Spatial Engineer)"],
   "codex.form.ssc_xu_addon.allay_engineer.title": [
-    "\nYou now closely resemble a friendly spectral creature, though unclear if due to internal magic, you exhibit some unique features",
-    "\n\nExclusive trinkets/tools：[Space Stabilizer]"
+    "\nYou now closely resemble a friendly spectral creature, though unclear if due to internal magic, you exhibit some unique features"
+  ],
+  "codex.form.ssc_xu_addon.allay_engineer.equip": [
+    "[Space Stabilizer]"
   ],
   "codex.form.ssc_xu_addon.allay_engineer.appearance": [
     "Your body now consists of light blue translucent gauze-like substance. Extremely light, letting you float\n",
@@ -201,8 +209,10 @@
 
   "codex.form.ssc_xu_addon.ocelot_jungle.name": ["Ocelot (Jungle Assassin)"],
   "codex.form.ssc_xu_addon.ocelot_jungle.title": [
-    "\nYou have absorbed the magic of the Wind Gem, granting you unparalleled speed.",
-    "\n\nExclusive trinkets/tools：[Charm of Wind],[Heavy Bracelet],[Vitality Stone],[Digestion Fiber Ball]"
+    "\nYou have absorbed the magic of the Wind Gem, granting you unparalleled speed."
+  ],
+  "codex.form.ssc_xu_addon.ocelot_jungle.equip": [
+    "[Charm of Wind],[Heavy Bracelet],[Vitality Stone],[Digestion Fiber Ball]"
   ],
   "codex.form.ssc_xu_addon.ocelot_jungle.appearance": [
     "Apart from your fur color, body size and the markings, you're nearly indistinguishable from a wild ocelot\n",
@@ -290,8 +300,10 @@
 
   "codex.form.ssc_xu_addon.axolotl_sea_king.name": ["Axolotl (Sea Prince)"],
   "codex.form.ssc_xu_addon.axolotl_sea_king.title": [
-    "\nYou have absorbed the magic from the Water Gem and learned to harness the water magic of nature. However, due to overuse of water magic, you fall into a weakened state when lacking magic.",
-    "\n\nExclusive accessories/tools: [Sea King Scepter] [Sea-Blessed Ring] [Moisture-Kept Charm] [Fountain Belt]"
+    "\nYou have absorbed the magic from the Water Gem and learned to harness the water magic of nature. However, due to overuse of water magic, you fall into a weakened state when lacking magic."
+  ],
+  "codex.form.ssc_xu_addon.axolotl_sea_king.equip": [
+    "[Sea King Scepter] [Sea-Blessed Ring] [Moisture-Kept Charm] [Fountain Belt]"
   ],
   "codex.form.ssc_xu_addon.axolotl_sea_king.appearance": [
     "You have embedded some Water Gems on your body to enhance water magic.\n",
@@ -334,8 +346,10 @@
 
   "codex.form.ssc_xu_addon.spider_undead.name": ["Spider (Undead Matriarch)"],
   "codex.form.ssc_xu_addon.spider_undead.title": [
-    "\nYou have absorbed the power of the Undead Essence, fusing your spider form with undead energy. Your carapace is now clad in bony armour, and rotting flesh intertwines with silk—the authority of the Undead Matriarch is yours.\n",
-    "\nExclusive trinkets/tools: [Swarmbond Amulet], [Undead Ring], [Auxiliary Sword], [Auxiliary Pickaxe], [Auxiliary Axe], [Shield (Extra Arm Slot)], [Nutrient Sac (Extra Arm Slot)], [Venom Spindle]"
+    "\nYou have absorbed the power of the Undead Essence, fusing your spider form with undead energy. Your carapace is now clad in bony armour, and rotting flesh intertwines with silk—the authority of the Undead Matriarch is yours.\n"
+  ],
+  "codex.form.ssc_xu_addon.spider_undead.equip": [
+    "[Swarmbond Amulet], [Undead Ring], [Auxiliary Sword], [Auxiliary Pickaxe], [Auxiliary Axe], [Shield (Extra Arm Slot)], [Nutrient Sac (Extra Arm Slot)], [Venom Spindle]"
   ],
   "codex.form.ssc_xu_addon.spider_undead.appearance": [
     "Your body retains the basic structure of a spider, but your six limbs and enlarged abdomen are now covered in pale bony exoskeleton, as if armour has grown from within.\n",

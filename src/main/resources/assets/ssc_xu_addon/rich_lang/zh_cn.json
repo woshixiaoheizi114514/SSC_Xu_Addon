@@ -5,8 +5,10 @@
     "\n‘不稳定的神圣金苹果似乎无法将你身上的诅咒驱离,\n",
     "你身上的诅咒远比想象中的难缠。\n",
     "不过幸运的是， 它将女巫的魔法从你身上清除出去。’\n",
-    "不过经过女巫魔法修改过的身体还无法恢复。\n",
-    "\n专属饰品/工具：[增魔脚环]"
+    "不过经过女巫魔法修改过的身体还无法恢复。\n"
+  ],
+  "codex.form.ssc_xu_addon.familiar_fox_purify.equip": [
+    "[增魔脚环]"
   ],
   "codex.form.ssc_xu_addon.familiar_fox_purify.appearance": [
     "你整体看上去与普通的野生红狐别无二致——除了身后摆动的异于寻常的两条大尾巴以外\n",
@@ -56,8 +58,10 @@
 
   "codex.form.ssc_xu_addon.bat_vampire.name": ["蝙蝠(吸血)"],
   "codex.form.ssc_xu_addon.bat_vampire.title": [
-    "\n由于那颗奇怪的宝石，你的现在对鲜血有狂热的需求..",
-    "\n\n专属饰品/工具：[血之护符],[血怒手套],[蔽日头环],[固着抓钩],[金刚石握爪]",["汲血长爪"]
+    "\n由于那颗奇怪的宝石，你的现在对鲜血有狂热的需求.."
+  ],
+  "codex.form.ssc_xu_addon.bat_vampire.equip": [
+    "[血之护符],[血怒手套],[蔽日头环],[固着抓钩],[金刚石握爪],[汲血长爪]"
   ],
   "codex.form.ssc_xu_addon.bat_vampire.appearance": [
     "由于那颗神秘的宝石，你的身体发生了一些变化\n",
@@ -113,8 +117,10 @@
 
   "codex.form.ssc_xu_addon.feral_cat_vf.name": ["猫(村庄之友)"],
   "codex.form.ssc_xu_addon.feral_cat_vf.title": [
-    "\n通过吸收绿宝石精粹内的魔力，你的身上长出了一些绿宝石，现在村民十分喜欢你。",
-    "\n\n专属饰品/工具：[绿宝石护符],[女巫之友脚环]"
+    "\n通过吸收绿宝石精粹内的魔力，你的身上长出了一些绿宝石，现在村民十分喜欢你。"
+  ],
+  "codex.form.ssc_xu_addon.feral_cat_vf.equip": [
+    "[绿宝石护符],[女巫之友脚环]"
   ],
   "codex.form.ssc_xu_addon.feral_cat_vf.appearance": [
     "你的身体化为一只优雅的黑猫，毛皮如夜色般光滑，双眼闪烁着聪慧的微光。\n",
@@ -152,8 +158,10 @@
 
   "codex.form.ssc_xu_addon.allay_engineer.name": ["悦灵(空间工程师)"],
   "codex.form.ssc_xu_addon.allay_engineer.title": [
-    "\n那颗空间宝石与你的灵体特性产生了特殊的反应，你似乎可以将你的身体部分相位到另一个次元，不过过度使用或许会有一些可怕的后果。",
-    "\n\n专属饰品/工具：[空间稳定器]"
+    "\n那颗空间宝石与你的灵体特性产生了特殊的反应，你似乎可以将你的身体部分相位到另一个次元，不过过度使用或许会有一些可怕的后果。"
+  ],
+  "codex.form.ssc_xu_addon.allay_engineer.equip": [
+    "[空间稳定器]"
   ],
   "codex.form.ssc_xu_addon.allay_engineer.appearance": [
     "你的身体现在由某种亮蓝色的半透明薄纱状物质构成。它们非常轻盈，让你能够漂浮在空中\n",
@@ -197,8 +205,10 @@
 
   "codex.form.ssc_xu_addon.ocelot_jungle.name": ["豹猫(丛林刺客)"],
   "codex.form.ssc_xu_addon.ocelot_jungle.title": [
-    "\n你吸收了风之宝石中的魔力，它让你获得了极致的速度。",
-    "\n\n专属饰品/工具：[疾风挂坠],[千钧脚环],[活力之石],[消化毛球]"
+    "\n你吸收了风之宝石中的魔力，它让你获得了极致的速度。"
+  ],
+  "codex.form.ssc_xu_addon.ocelot_jungle.equip": [
+    "[疾风挂坠],[千钧脚环],[活力之石],[消化毛球]"
   ],
   "codex.form.ssc_xu_addon.ocelot_jungle.appearance": [
     "除了皮毛的颜色与身体的尺寸以及那些花纹以外，你整体看上去与一只野生豹猫几乎没有差别\n你是密林中的王者。在你敏锐的双眼与尖利的四爪下，任何生物都是你的狩猎目标"
@@ -284,8 +294,10 @@
   "message.ssc_xu_addon.item.water_gem.special_form": "你吸收的潮汐宝石中的魔力，你变化成了新的形态。",
   "codex.form.ssc_xu_addon.axolotl_sea_king.name": ["美西螈(深海王子)"],
   "codex.form.ssc_xu_addon.axolotl_sea_king.title": [
-    "\n你吸收了潮汐宝石中的魔力，学会了如何使用自然中的水之魔力。不过由于过度使用水之魔力，当缺乏魔力时你会陷入虚弱状态。",
-    "\n\n专属饰品/工具：[海王权杖] [海佑之戒] [保湿护符] [喷泉腰带]"
+    "\n你吸收了潮汐宝石中的魔力，学会了如何使用自然中的水之魔力。不过由于过度使用水之魔力，当缺乏魔力时你会陷入虚弱状态。"
+  ],
+  "codex.form.ssc_xu_addon.axolotl_sea_king.equip": [
+    "[海王权杖] [海佑之戒] [保湿护符] [喷泉腰带]"
   ],
   "codex.form.ssc_xu_addon.axolotl_sea_king.appearance": [
     "你在你的身上镶嵌了一些潮汐宝石用于增强水之魔力\n",
@@ -326,8 +338,10 @@
 
   "codex.form.ssc_xu_addon.spider_undead.name": ["蜘蛛(不死蛛后)"],
   "codex.form.ssc_xu_addon.spider_undead.title": [
-    "\n你吸收了不死精粹中的能量，原本的蜘蛛形态与亡灵之力融合，化为半亡灵的存在。你的甲壳上覆盖着骨质的装甲，腐肉与丝线交织，不死蛛后的权柄已然加身。\n",
-    "\n专属饰品/工具：[集群护符],[亡灵戒指],[副手剑],[副手镐],[副手斧],[盾牌(额外手臂槽位)],[流食囊(额外手臂槽位)],[箭毒纺锤]"
+    "\n你吸收了不死精粹中的能量，原本的蜘蛛形态与亡灵之力融合，化为半亡灵的存在。你的甲壳上覆盖着骨质的装甲，腐肉与丝线交织，不死蛛后的权柄已然加身。\n"
+  ],
+  "codex.form.ssc_xu_addon.spider_undead.equip": [
+    "[集群护符],[亡灵戒指],[副手剑],[副手镐],[副手斧],[盾牌(额外手臂槽位)],[流食囊(额外手臂槽位)],[箭毒纺锤]"
   ],
   "codex.form.ssc_xu_addon.spider_undead.appearance": [
     "你的身体保留了蜘蛛形态的基本结构，但六条节肢与膨大的后腹上覆盖了一层苍白的骨质外骨骼，像是从体内长出的铠甲。\n",
