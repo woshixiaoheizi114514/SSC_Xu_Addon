@@ -4,6 +4,9 @@
 	"version": "${version}",
 	"name": "SSC_Xu_Addon",
 	"description": "Shape Shifter Curse Addon, Add some new special form.",
+	"contact": {
+		"sources": "https://github.com/xu233333/SSC_Xu_Addon"
+	},
 	"authors": [
 		{
 			"name": "XuHaoNan",
@@ -13,9 +16,14 @@
 			}
 		}
 	],
-	"contact": {
-		"sources": "https://github.com/xu233333/SSC_Xu_Addon"
-	},
+	"contributors": [
+		{
+			"name": "MaxMobile-ru",
+			"contact": {
+				"github": "https://github.com/MaxMobile-ru"
+			}
+		}
+	],
 	"license": "MIT",
 	"icon": "assets/ssc_xu_addon/icon.png",
 	"environment": "*",
