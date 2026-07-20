@@ -12,6 +12,7 @@ import net.minecraft.util.Pair;
 import net.onixary.shapeShifterCurseFabric.ShapeShifterCurseFabric;
 import xu_mod.SSCXuAddon.SSCXuAddon;
 import xu_mod.SSCXuAddon.powers.*;
+import xu_mod.SSCXuAddon.powers.magic.MagicUtils;
 import xu_mod.SSCXuAddon.powers.skills.OcelotRush1Power;
 
 public class Init_Apoli {
@@ -48,6 +49,7 @@ public class Init_Apoli {
         LeveledManaPower.registerConditions(Init_Apoli::registerEntityCondition);
         SomeRandomConditionAndAction.registerConditions(Init_Apoli::registerEntityCondition);
         AxolotlPower.registerConditions(Init_Apoli::registerEntityCondition);
+        MagicUtils.registerConditions(Init_Apoli::registerEntityCondition);
     }
 
     private static void init_Action() {
@@ -60,6 +62,7 @@ public class Init_Apoli {
         AxolotlPower.registerActions(Init_Apoli::registerEntityAction, Init_Apoli::registerBIEntityAction);
         WebBridgeAction.registerAction(Init_Apoli::registerEntityAction, Init_Apoli::registerBIEntityAction);
         MinionActions.registerAction(Init_Apoli::registerEntityAction, Init_Apoli::registerBIEntityAction);
+        MagicUtils.registerAction(Init_Apoli::registerEntityAction, Init_Apoli::registerBIEntityAction);
     }
 
 
