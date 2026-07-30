@@ -54,13 +54,13 @@ public class WaterGem extends Item {
     public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
         if (user instanceof PlayerEntity player && !world.isClient) {
             PlayerFormBase form = RegPlayerFormComponent.PLAYER_FORM.get(user).getCurrentForm();
-            if (RegPlayerForms.AXOLOTL_3.equals(form)) {
+            if (RegPlayerForms.AXOLOTL_3.equals(form) && !user.isSneaking()) {
                 player.sendMessage(Text.translatable("message.ssc_xu_addon.item.water_gem.special_form").formatted(Formatting.YELLOW), false);
                 TransformManager.handleDirectTransform(player, Init_Form.AxolotlSeaKing, false);
             }
             else if (Init_Form.AxolotlSeaKing.equals(form)) {
                 ManaUtils.gainPlayerMana(player, 10000);
-                ManaUtils.gainPlayerManaWithTime(player, 1, 300);
+                ManaUtils.gainPlayerManaWithTime(player, 1, 1200);
                 player.getItemCooldownManager().set(this, 600);
             } else {
                 // 环境适应力

@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:brain_coral_block",
+    "minecraft:brain_coral",
+    "minecraft:brain_coral_fan"
+  ]
+}

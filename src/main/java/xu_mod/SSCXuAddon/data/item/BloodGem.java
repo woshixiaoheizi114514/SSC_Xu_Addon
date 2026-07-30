@@ -51,7 +51,7 @@ public class BloodGem extends Item {
         if (user instanceof PlayerEntity player && !world.isClient) {
             // 我认为就一种形态需要用这种方式变身 就不拆成函数吧
             PlayerFormBase form = RegPlayerFormComponent.PLAYER_FORM.get(user).getCurrentForm();
-            if (RegPlayerForms.BAT_3.equals(form)) {
+            if (RegPlayerForms.BAT_3.equals(form) && !user.isSneaking()) {
                 player.sendMessage(Text.translatable("message.ssc_xu_addon.item.blood_gem.special_form").formatted(Formatting.YELLOW), false);
                 TransformManager.handleDirectTransform(player, Init_Form.BatVampire, false);
             } else if (Init_Form.BatVampire.equals(form)) {
