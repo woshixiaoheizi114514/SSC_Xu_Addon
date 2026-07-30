@@ -119,7 +119,7 @@
     "item.ssc_xu_addon.sea_blessed_ring": "Sea-Blessed Ring",
     "item.ssc_xu_addon.sea_blessed_ring.tooltip": "[Axolotl (Sea Prince) Form] Grants additional Water Magic capacity (+25%) and increased Water Magic regeneration while in water (+10/s).",
     "item.ssc_xu_addon.moisture_kept_charm": "Moisture-Kept Charm",
-    "item.ssc_xu_addon.moisture_kept_charm.tooltip": "[Axolotl (Sea Prince) Form] When Water Magic is below 55%, consumes its own charge to restore Water Magic at 2 points per second. Automatically charges when the wearer is submerged in water.",
+    "item.ssc_xu_addon.moisture_kept_charm.tooltip": "[Axolotl (Sea Prince) Form] When Water Magic is below 95%, consumes its own charge to restore Water Magic at 3 points per second. Automatically charges when the wearer is submerged in water.",
     "item.ssc_xu_addon.moisture_kept_charm.count": "Charge: %s / %s",
     "message.ssc_xu_addon.item.water_gem.special_form": "You absorb the magic from the Water Gem and transform into a new form.",
     "codex.form.ssc_xu_addon.axolotl_sea_king.name": "Axolotl (Sea Prince)",

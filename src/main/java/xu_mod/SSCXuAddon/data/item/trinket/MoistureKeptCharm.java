@@ -16,10 +16,10 @@ import xu_mod.SSCXuAddon.init.Init_Form;
 import java.util.List;
 
 public class MoistureKeptCharm extends AccessoryItem {
-    public int MaxManaStore = 300;
-    public float ManaRegenStartPercent = 0.55f;
-    public int ManaRegenRate = 2;
-    public int ManaRegenInWater = 5;
+    public int MaxManaStore = 1500;
+    public float ManaRegenStartPercent = 0.95f;
+    public int ManaRegenRate = 3;
+    public int ManaRegenInWater = 50;
     public static final String StoreManaTag = "axolotl_mana_store";
 
     public MoistureKeptCharm(Settings settings) {
