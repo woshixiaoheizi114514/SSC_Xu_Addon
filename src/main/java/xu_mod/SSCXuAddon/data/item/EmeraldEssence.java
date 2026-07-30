@@ -50,7 +50,7 @@ public class EmeraldEssence extends Item {
     public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
         if (user instanceof PlayerEntity player && !world.isClient) {
             // 我认为就一种形态需要用这种方式变身 就不拆成函数吧
-            if (RegPlayerForms.FERAL_CAT_SP.isPlayerForm(player)) {
+            if (RegPlayerForms.FERAL_CAT_SP.isPlayerForm(player) && !user.isSneaking()) {
                 player.sendMessage(Text.translatable("message.ssc_xu_addon.item.emerald_essence.special_form").formatted(Formatting.YELLOW), false);
                 TransformManager.startTransform(player, Init_Form.FeralCatVF, null);
             } else if (Init_Form.FeralCatVF.isPlayerForm(player)) {

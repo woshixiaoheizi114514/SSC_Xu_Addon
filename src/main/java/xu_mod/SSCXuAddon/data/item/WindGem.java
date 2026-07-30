@@ -45,7 +45,7 @@ public class WindGem extends Item {
     @Override
     public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
         if (user instanceof PlayerEntity player && !world.isClient) {
-            if (RegPlayerForms.OCELOT_3.isPlayerForm(player)) {
+            if (RegPlayerForms.OCELOT_3.isPlayerForm(player) && !user.isSneaking()) {
                 player.sendMessage(Text.translatable("message.ssc_xu_addon.item.wind_gem.special_form").formatted(Formatting.YELLOW), false);
                 TransformManager.startTransform(player, Init_Form.OcelotJungle, null);
             }
