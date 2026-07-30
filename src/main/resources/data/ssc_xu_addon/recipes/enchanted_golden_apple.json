@@ -1,0 +1,32 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ACA",
+    "EBD",
+    "AFA"
+  ],
+  "key": {
+    "A": {
+      "item": "minecraft:golden_apple"
+    },
+    "B": {
+      "item": "ssc_xu_addon:unstable_holy_apple"
+    },
+    "C": {
+      "item": "ssc_xu_addon:wind_gem"
+    },
+    "D": {
+      "item": "ssc_xu_addon:fire_gem"
+    },
+    "E": {
+      "item": "ssc_xu_addon:water_gem"
+    },
+    "F": {
+      "item": "ssc_xu_addon:ground_gem"
+    }
+  },
+  "result": {
+    "item": "minecraft:enchanted_golden_apple",
+    "count": 5
+  }
+}
