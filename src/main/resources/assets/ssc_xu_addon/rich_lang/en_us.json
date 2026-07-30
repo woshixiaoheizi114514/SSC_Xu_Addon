@@ -410,5 +410,10 @@
   "text.autoconfig.ssc_xu_addon_custom.option.enableFakeBlindPower": "Enable Power Blindness Effect",
   "text.autoconfig.ssc_xu_addon_server.title": "SSC Xu Addon - Server Config",
   "text.autoconfig.ssc_xu_addon_server.option.enableSpaceBag": "Enable Space Bag",
-  "text.autoconfig.ssc_xu_addon_server.option.creativeInfinityMana": "Creative Mode Infinite Mana (Addon Only)"
+  "text.autoconfig.ssc_xu_addon_server.option.creativeInfinityMana": "Creative Mode Infinite Mana (Addon Only)",
+
+  "key.shape-shifter-curse.active_skill_3": "Active Power (3)",
+  "key.shape-shifter-curse.active_skill_4": "Active Power (4)",
+  "key.shape-shifter-curse.active_skill_5": "Active Power (5)",
+  "key.shape-shifter-curse.active_skill_6": "Active Power (6)"
 }

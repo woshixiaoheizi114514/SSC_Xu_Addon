@@ -444,5 +444,10 @@
   "text.autoconfig.ssc_xu_addon_custom.option.enableFakeBlindPower": "Включить силу эффекта слепоты",
   "text.autoconfig.ssc_xu_addon_server.title": "SSC Xu Addon - Настройки сервера",
   "text.autoconfig.ssc_xu_addon_server.option.enableSpaceBag": "Включить Межпространственный мешочек",
-  "text.autoconfig.ssc_xu_addon_server.option.creativeInfinityMana": "Бесконечная мана в творческом режиме (только аддон)"
+  "text.autoconfig.ssc_xu_addon_server.option.creativeInfinityMana": "Бесконечная мана в творческом режиме (только аддон)",
+
+  "key.shape-shifter-curse.active_skill_3": "Активная сила (3)",
+  "key.shape-shifter-curse.active_skill_4": "Активная сила (4)",
+  "key.shape-shifter-curse.active_skill_5": "Активная сила (5)",
+  "key.shape-shifter-curse.active_skill_6": "Активная сила (6)"
 }
