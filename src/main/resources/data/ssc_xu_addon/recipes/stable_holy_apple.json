@@ -1,14 +1,11 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "BAB",
+    "BBB",
     "BCB",
     "BBB"
   ],
   "key": {
-    "A": {
-      "item": "minecraft:nether_star"
-    },
     "B": {
       "item": "minecraft:gold_block"
     },
