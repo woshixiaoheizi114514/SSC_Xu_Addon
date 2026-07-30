@@ -10,7 +10,7 @@
       "item": "minecraft:bone"
     },
     "B": {
-      "item": "minecraft:soul_soil"
+      "tag": "ssc_xu_addon:soul_sand_like"
     },
     "C": {
       "item": "minecraft:wither_skeleton_skull"
