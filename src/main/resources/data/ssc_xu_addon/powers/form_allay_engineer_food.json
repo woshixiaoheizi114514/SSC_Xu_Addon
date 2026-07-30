@@ -16,6 +16,21 @@
     "mana_to_food_ratio": 0.0,
     "mana_to_saturation_ratio": 0.0
   },
+  "eat_amethyst_shard_effect": {
+    "type": "apoli:action_on_item_use",
+    "trigger": "finish",
+    "entity_action": {
+      "type": "shape-shifter-curse:gain_mana_with_time",
+      "mana": -2,
+      "time": 20
+    },
+    "item_condition": {
+      "type": "apoli:ingredient",
+      "ingredient": {
+        "item": "minecraft:amethyst_shard"
+      }
+    }
+  },
   "level_1_food": {
     "type": "apoli:modify_food",
     "entity_action": {
