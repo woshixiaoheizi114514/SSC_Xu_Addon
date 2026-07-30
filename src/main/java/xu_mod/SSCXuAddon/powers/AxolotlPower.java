@@ -60,7 +60,7 @@ public class AxolotlPower {
         public Consumer<Entity> onInvokeAction = null;
         public Consumer<Entity> onFinalAction = null;
 
-        public long skillTick = 40;
+        public long skillTick = 20;
 
         public float movementSpeedX = 2.5f;  // 初始移动速度X(视角方向) 未调整
         public float movementSpeedY = 0.1f;  // 初始移动速度Y 未调整
