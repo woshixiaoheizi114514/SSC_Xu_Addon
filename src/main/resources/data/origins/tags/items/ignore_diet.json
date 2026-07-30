@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "ssc_xu_addon:unstable_holy_apple",
+    "ssc_xu_addon:stable_holy_apple",
+    "ssc_xu_addon:super_holy_apple"
+  ]
+}
