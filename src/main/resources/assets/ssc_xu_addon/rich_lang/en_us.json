@@ -184,9 +184,10 @@
     "Your lower torso vanished - you can't wear leggings or boots"
   ],
   "codex.form.ssc_xu_addon.allay_engineer.instincts": [
-    "\nCompared to other forms, you sense something 'special' about your current form: it does not influence your mind much, nor is it fully stable. You should be able to revert it relatively easily if you wish.\n\n\n",
-    "\nPress Active Ability (1) to open a player-bound storage space, sharing the Space Gem's dimension. Using a Space Gem unlocks a larger space.",
-    "\nPress Active Ability (2) to activate Phasing, allowing you to pass through all blocks, but continuously increasing your Phasing Value. While inside blocks, you can only see using unique organs gained as an Allay (similar to Blindness)."
+    "\nCompared to other forms, you sense something 'special' about your current form: it does not affect your mind much, nor is it fully stable. If you wish, you should be able to reverse it relatively easily.\n\n\n",
+    "\nPress Active Ability (1) to initiate a warp. When Phasing is active, you can pass through blocks, but using spatial energy will slightly increase your Phasing Value.",
+    "\nPress Active Ability (2) to activate Phasing, allowing you to pass through all blocks, but continuously increasing your Phasing Value. While inside blocks, you can only see using the unique organs you gained during your Allay phase (similar to Blindness).",
+    "\nPress Active Ability (5) to open a player-bound storage space, sharing the Space Gem's dimension. Using a Space Gem unlocks a larger space."
   ],
   "item.ssc_xu_addon.space_gem": ["Space Gem"],
   "item.ssc_xu_addon.space_gem.tooltip": ["An unstable Space Gem. Using it seems to open a rift to another plane, though the location may be uncertain. That plane appears to only store items."],
@@ -196,7 +197,7 @@
   "item.ssc_xu_addon.space_bag": ["Space Bag"],
   "item.ssc_xu_addon.space_bag.tooltip": ["A storage pouch made with Space Gem, stabilized with gold and lapis lazuli."],
   "item.ssc_xu_addon.space_stabilizer": ["Space Stabilizer"],
-  "item.ssc_xu_addon.space_stabilizer.tooltip": ["[Allay (Spatial Engineer) Form] A Space Gem stabilized with gold and lapis lazuli. Its energy stabilizes the gem in your body, increasing the Phasing Value cap and reducing Phasing cost."],
+  "item.ssc_xu_addon.space_stabilizer.tooltip": ["[Allay (Spatial Engineer) Form] A Space Gem stabilized with gold and lapis lazuli. Its energy stabilizes the Space Gem in your body, restores some maximum health, increases the Phasing Value cap, increases Phasing Value consumption rate, and reduces Phasing ability costs."],
   "container.ssc_xu_addon.player_space_bag": ["Personal Spatial Storage"],
 
   "codex.form.ssc_xu_addon.ocelot_jungle.name": ["Ocelot (Jungle Assassin)"],
