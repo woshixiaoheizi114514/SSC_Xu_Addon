@@ -3,7 +3,7 @@
   "pattern": [
     "BGC",
     "AFA",
-    "DAE"
+    "DGE"
   ],
   "key": {
     "A": {
@@ -25,7 +25,7 @@
       "item": "minecraft:diamond"
     },
     "G": {
-      "item": "minecraft:netherite_scrap"
+      "tag": "ssc_xu_addon:soul_sand_like"
     }
   },
   "result": {
