@@ -166,15 +166,22 @@ public class SomeRandomConditionAndAction {
                 SSCXuAddon.identifier("teleport"),
                 new SerializableData()
                         .add("range", SerializableDataTypes.DOUBLE, 8.0d)
+                        .add("should_raycast_condition", ApoliDataTypes.ENTITY_CONDITION, null)
                         .add("actor_action", ApoliDataTypes.ENTITY_ACTION, null),
                 (data, entity) -> {
                     double range = data.getDouble("range");
                     ActionFactory<Entity>.Instance actorAction = data.get("actor_action");
+                    ConditionFactory<Entity>.Instance shouldRaycastCondition = data.get("should_raycast_condition");
                     if (entity.getWorld().isClient) {
                         return;
                     }
                     if (entity instanceof PlayerEntity player) {
-                        Vec3d targetPos = RaycastUtils.getPlayerTargetPos(player, range);
+                        Vec3d targetPos;
+                        if (shouldRaycastCondition == null || shouldRaycastCondition.test(player)) {
+                            targetPos = RaycastUtils.getPlayerTargetPos(player, range);
+                        } else {
+                            targetPos = player.getPos().add(player.getRotationVector().multiply(range));
+                        }
                         player.teleport(targetPos.getX(), targetPos.getY(), targetPos.getZ());
                         if (actorAction != null) {
                             actorAction.accept(player);

@@ -2,7 +2,10 @@
   "type": "shape-shifter-curse:mana_attribute",
   "modifierID": "ssc_xu_addon:space_stabilizer",
   "max_mana_modifier": {
-    "multiply": 1.25
+    "multiply": 1.5
+  },
+  "regen_mana_modifier": {
+    "add": -0.1
   },
   "player_side": true
 }

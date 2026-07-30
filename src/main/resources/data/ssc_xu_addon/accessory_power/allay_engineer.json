@@ -9,7 +9,8 @@
       "ssc_xu_addon:allay_engineer": {
         "add": [
           "ssc_xu_addon:form_allay_engineer_ghost_cost_low",
-          "ssc_xu_addon:form_allay_engineer_bar_boost"
+          "ssc_xu_addon:form_allay_engineer_bar_boost",
+          "ssc_xu_addon:form_allay_engineer_health_boost"
         ],
         "remove": [
           "ssc_xu_addon:form_allay_engineer_ghost_cost_high"
