@@ -6,6 +6,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EnderChestInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.loot.LootTable;
 import net.minecraft.loot.context.LootContextParameterSet;
 import net.minecraft.loot.context.LootContextParameters;
@@ -18,6 +19,7 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.util.*;
 import net.minecraft.world.World;
+import net.onixary.shapeShifterCurseFabric.mana.ManaUtils;
 import net.onixary.shapeShifterCurseFabric.player_form.PlayerFormBase;
 import net.onixary.shapeShifterCurseFabric.player_form.RegPlayerForms;
 import net.onixary.shapeShifterCurseFabric.player_form.ability.RegPlayerFormComponent;
@@ -29,7 +31,19 @@ import xu_mod.SSCXuAddon.utils.Inventory.InventoryMenuUtils;
 import java.util.List;
 
 public class SpaceGem extends Item {
-    public static final Identifier lootTableId = new Identifier("minecraft", "chests/end_city_treasure");
+    public static final Identifier extraLootTableId = new Identifier("ssc_xu_addon", "gameplay/space_gem_extra_loot");
+    public static final Identifier netherLootTableId = new Identifier("minecraft", "chests/bastion_hoglin_stable");
+    public static final Identifier endLootTableId = new Identifier("minecraft", "chests/end_city_treasure");
+    public static final Identifier[] lootTableList = {
+            new Identifier("minecraft", "chests/nether_bridge"),
+            new Identifier("minecraft", "chests/ruined_portal"),
+            new Identifier("minecraft", "chests/jungle_temple"),
+            new Identifier("minecraft", "chests/abandoned_mineshaft"),
+            new Identifier("minecraft", "chests/buried_treasure"),
+            new Identifier("minecraft", "chests/underwater_ruin_small"),
+            new Identifier("minecraft", "chests/underwater_ruin_big"),
+            new Identifier("minecraft", "chests/spawn_bonus_chest")
+    };
 
     public SpaceGem(Settings settings) {
         super(settings);
@@ -66,36 +80,127 @@ public class SpaceGem extends Item {
             }
             else {
                 int r = world.random.nextInt(100);
-                if (r < 20) {  // 悦灵空间2级
-                    InventoryMenuUtils.openPlayerSpaceBag(player, Init_Form.AllayEngineer.equals(form) ? 3 : 2);
-                    world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.BLOCK_ENDER_CHEST_OPEN, SoundCategory.PLAYERS, 1.0F, 1.0F);
-                } else if (r < 30) {  // 末影箱
-                    EnderChestInventory enderChestInventory = player.getEnderChestInventory();
-                    player.openHandledScreen(new SimpleNamedScreenHandlerFactory((syncId, inventory, p) -> GenericContainerScreenHandler.createGeneric9x3(syncId, inventory, enderChestInventory), Text.translatable("container.enderchest")));
-                    world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.BLOCK_ENDER_CHEST_OPEN, SoundCategory.PLAYERS, 1.0F, 1.0F);
-                } else if (r < 50) {  // 战利品 (X1~X4)
-                    r = world.random.nextInt(3) + 1;
-                    for (int i = 0; i < r; i++) {
+                int breakChance = 75;
+                if (Init_Form.AllayEngineer.equals(form)) {
+                    breakChance = 50;
+                    int minManaAdd = 30;
+                    int maxManaAdd = 120;
+                    if (r < 1) {  // 下界之星 中大奖了 1%
+                        player.giveItemStack(new ItemStack(Items.NETHER_STAR, 1));
+                        minManaAdd += 120;
+                        maxManaAdd += 120;
+                        breakChance += 100;
+                    }
+                    else if (r < 5) {  // 下界合金之类的 二等奖 4% 保底一个碎片
                         LootContextParameterSet lootContextParameterSet = (new LootContextParameterSet.Builder((ServerWorld) world)).addOptional(LootContextParameters.THIS_ENTITY, user).add(LootContextParameters.ORIGIN, user.getPos()).build(LootContextTypes.CHEST);
-                        LootTable lootTable = world.getServer().getLootManager().getLootTable(lootTableId);
+                        LootTable lootTable = world.getServer().getLootManager().getLootTable(extraLootTableId);
                         List<ItemStack> stacks = lootTable.generateLoot(lootContextParameterSet);
                         for (ItemStack itemStack : stacks) {
                             player.giveItemStack(itemStack);
                         }
+                        minManaAdd += 80;
+                        maxManaAdd += 100;
+                        breakChance += 100;
                     }
-                    world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.BLOCK_ENDER_CHEST_OPEN, SoundCategory.PLAYERS, 1.0F, 1.0F);
-                } else {  // 10点虚空伤害
-                    player.timeUntilRegen = 0;
-                    player.lastDamageTaken = 0.0f;
-                    player.damage(player.getWorld().getDamageSources().outOfWorld(), 10);
-                    world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.BLOCK_PORTAL_TRAVEL, SoundCategory.PLAYERS, 0.25F, 1F);
+                    else if (r < 15) {  // 猪灵要塞箱子 10%
+                        r = world.random.nextInt(1) + 1;
+                        for (int i = 0; i < r; i++) {
+                            LootContextParameterSet lootContextParameterSet = (new LootContextParameterSet.Builder((ServerWorld) world)).addOptional(LootContextParameters.THIS_ENTITY, user).add(LootContextParameters.ORIGIN, user.getPos()).build(LootContextTypes.CHEST);
+                            LootTable lootTable = world.getServer().getLootManager().getLootTable(netherLootTableId);
+                            List<ItemStack> stacks = lootTable.generateLoot(lootContextParameterSet);
+                            for (ItemStack itemStack : stacks) {
+                                player.giveItemStack(itemStack);
+                            }
+                            minManaAdd += 24;
+                            maxManaAdd += 48;
+                            breakChance += 30;
+                        }
+                    } else if (r < 35) {  // 末地战利品 20%
+                        r = world.random.nextInt(2) + 1;
+                        for (int i = 0; i < r; i++) {
+                            LootContextParameterSet lootContextParameterSet = (new LootContextParameterSet.Builder((ServerWorld) world)).addOptional(LootContextParameters.THIS_ENTITY, user).add(LootContextParameters.ORIGIN, user.getPos()).build(LootContextTypes.CHEST);
+                            LootTable lootTable = world.getServer().getLootManager().getLootTable(endLootTableId);
+                            List<ItemStack> stacks = lootTable.generateLoot(lootContextParameterSet);
+                            for (ItemStack itemStack : stacks) {
+                                player.giveItemStack(itemStack);
+                            }
+                            minManaAdd += 15;
+                            maxManaAdd += 30;
+                            breakChance += 20;
+                        }
+                    } else if (r < 55) {  // 随机战利品(从会掉落宝石的战利品表中抽奖) 20%
+                        r = world.random.nextInt(lootTableList.length);
+                        Identifier targetLootTableId = lootTableList[r];
+                        r = world.random.nextInt(1) + 1;
+                        for (int i = 0; i < r; i++) {
+                            LootContextParameterSet lootContextParameterSet = (new LootContextParameterSet.Builder((ServerWorld) world)).addOptional(LootContextParameters.THIS_ENTITY, user).add(LootContextParameters.ORIGIN, user.getPos()).build(LootContextTypes.CHEST);
+                            LootTable lootTable = world.getServer().getLootManager().getLootTable(targetLootTableId);
+                            List<ItemStack> stacks = lootTable.generateLoot(lootContextParameterSet);
+                            for (ItemStack itemStack : stacks) {
+                                player.giveItemStack(itemStack);
+                            }
+                            minManaAdd += 15;
+                            maxManaAdd += 30;
+                            breakChance += 20;
+                        }
+                    } else {  // 虚空伤害 45%
+                        player.timeUntilRegen = 0;
+                        player.lastDamageTaken = 0.0f;
+                        r = world.random.nextInt(4) + 8;
+                        player.damage(player.getWorld().getDamageSources().outOfWorld(), r);
+                        minManaAdd += 60;
+                        maxManaAdd += 60;
+                        world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.BLOCK_PORTAL_TRAVEL, SoundCategory.PLAYERS, 0.25F, 1F);
+                    }
+                    r = world.random.nextInt(maxManaAdd - minManaAdd + 1) + minManaAdd;
+                    double maxMana = ManaUtils.getPlayerMaxMana(player);
+                    double nowMana = ManaUtils.getPlayerMana(player);
+                    double addMana = Math.min(maxMana - nowMana, r);
+                    ManaUtils.gainPlayerMana(player, addMana);
+                    double remainMana = r - addMana;
+                    if (remainMana > 0.1) {
+                        float voidDamage = (float) (remainMana / 10);
+                        player.timeUntilRegen = 0;
+                        player.lastDamageTaken = 0.0f;
+                        player.damage(player.getWorld().getDamageSources().outOfWorld(), voidDamage);
+                        world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.BLOCK_PORTAL_TRAVEL, SoundCategory.PLAYERS, 0.25F, 1F);
+                    }
+                } else {
+                    if (r < 20) {  // 悦灵空间2级
+                        InventoryMenuUtils.openPlayerSpaceBag(player, Init_Form.AllayEngineer.equals(form) ? 3 : 2);
+                        world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.BLOCK_ENDER_CHEST_OPEN, SoundCategory.PLAYERS, 1.0F, 1.0F);
+                    } else if (r < 30) {  // 末影箱
+                        EnderChestInventory enderChestInventory = player.getEnderChestInventory();
+                        player.openHandledScreen(new SimpleNamedScreenHandlerFactory((syncId, inventory, p) -> GenericContainerScreenHandler.createGeneric9x3(syncId, inventory, enderChestInventory), Text.translatable("container.enderchest")));
+                        world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.BLOCK_ENDER_CHEST_OPEN, SoundCategory.PLAYERS, 1.0F, 1.0F);
+                    } else if (r < 50) {  // 战利品 (X1~X4)
+                        r = world.random.nextInt(3) + 1;
+                        for (int i = 0; i < r; i++) {
+                            LootContextParameterSet lootContextParameterSet = (new LootContextParameterSet.Builder((ServerWorld) world)).addOptional(LootContextParameters.THIS_ENTITY, user).add(LootContextParameters.ORIGIN, user.getPos()).build(LootContextTypes.CHEST);
+                            LootTable lootTable = world.getServer().getLootManager().getLootTable(endLootTableId);
+                            List<ItemStack> stacks = lootTable.generateLoot(lootContextParameterSet);
+                            for (ItemStack itemStack : stacks) {
+                                player.giveItemStack(itemStack);
+                            }
+                        }
+                        world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.BLOCK_ENDER_CHEST_OPEN, SoundCategory.PLAYERS, 1.0F, 1.0F);
+                    } else {  // 10点虚空伤害
+                        player.timeUntilRegen = 0;
+                        player.lastDamageTaken = 0.0f;
+                        r = world.random.nextInt(4) + 8;
+                        player.damage(player.getWorld().getDamageSources().outOfWorld(), r);
+                        world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.BLOCK_PORTAL_TRAVEL, SoundCategory.PLAYERS, 0.25F, 1F);
+                    }
                 }
                 r = world.random.nextInt(100);
-                if (r < 75) { // 75% 碎裂 比直接没了更能体现出不稳定性
+                if (r < breakChance) { // 75% 碎裂 比直接没了更能体现出不稳定性
                     world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ENTITY_ITEM_BREAK, SoundCategory.PLAYERS, 0.25F, 1F);
                     if (!player.getAbilities().creativeMode) {
                         stack.decrement(1);
                     }
+                    player.getItemCooldownManager().set(this, 100);
+                } else {
+                    player.getItemCooldownManager().set(this, 600);
                 }
             }
         }
