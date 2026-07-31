@@ -39,7 +39,7 @@ public class ShapeProtection extends Enchantment {
         }
         if (target instanceof PlayerEntity player) {
             IForm form = FormUtils.getPlayerForm(player);
-            float base = FormUtils.SpecialForm.hasFlag(form) ? 0.5f : 0.0f;
+            float base = FormUtils.SpecialForm.hasFlag(form) ? 1.0f : 0.5f;
             return Math.max(0.0f, base + form.getFormTier() * 0.5f);
         }
         return 0.0f;
