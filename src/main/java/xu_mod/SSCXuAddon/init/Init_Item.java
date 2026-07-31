@@ -133,6 +133,7 @@ public class Init_Item {
         EnchantmentUtils.registerEnchantmentItem(Enchantments.FIRE_ASPECT, BloodClaw.class);
         EnchantmentUtils.registerEnchantmentItem(Enchantments.KNOCKBACK, BloodClaw.class);
         EnchantmentUtils.registerEnchantmentItem(Enchantments.LOOTING, BloodClaw.class);
+        EnchantmentUtils.registerEnchantmentItem(Enchantments.EFFICIENCY, SpaceBag.class);
 
         LootTableEvents.MODIFY.register((resourceManager, lootManager, id, tableBuilder, lootTableSource) -> {
             // 鲜血宝石 会在地狱要塞(中 20% 2-3)和废弃地狱门(少 10% 1-2)宝箱刷新

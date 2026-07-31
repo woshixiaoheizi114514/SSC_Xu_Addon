@@ -164,7 +164,7 @@ public class SpaceGem extends Item {
                     }
                 } else {
                     if (r < 20) {  // 悦灵空间2级
-                        InventoryMenuUtils.openPlayerSpaceBag(player, Init_Form.AllayEngineer.isPlayerForm(player) ? 3 : 2);
+                        InventoryMenuUtils.openPlayerSpaceBag(player, Init_Form.AllayEngineer.isPlayerForm(player) ? 6 : 4);
                         world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.BLOCK_ENDER_CHEST_OPEN, SoundCategory.PLAYERS, 1.0F, 1.0F);
                     } else if (r < 30) {  // 末影箱
                         EnderChestInventory enderChestInventory = player.getEnderChestInventory();

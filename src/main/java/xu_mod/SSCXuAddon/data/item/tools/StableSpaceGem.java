@@ -36,7 +36,7 @@ public class StableSpaceGem extends Item implements Vanishable {
 
     @Override
     public int getMaxUseTime(ItemStack stack) {
-        return 24;
+        return 1;
     }
 
 
@@ -51,7 +51,7 @@ public class StableSpaceGem extends Item implements Vanishable {
         if (user instanceof PlayerEntity player && !world.isClient) {
             // 我认为就一种形态需要用这种方式变身 就不拆成函数吧
             if (!user.isSneaking()) {
-                InventoryMenuUtils.openPlayerSpaceBag(player, Init_Form.AllayEngineer.isPlayerForm(player) ? 3 : 2);
+                InventoryMenuUtils.openPlayerSpaceBag(player, Init_Form.AllayEngineer.isPlayerForm(player) ? 6 : 4);
                 world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.BLOCK_ENDER_CHEST_OPEN, SoundCategory.PLAYERS, 1.0F, 1.0F);
             } else {
                 EnderChestInventory enderChestInventory = player.getEnderChestInventory();
@@ -59,7 +59,7 @@ public class StableSpaceGem extends Item implements Vanishable {
                 world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.BLOCK_ENDER_CHEST_OPEN, SoundCategory.PLAYERS, 1.0F, 1.0F);
             }
             int r = world.random.nextInt(100);
-            if (r < 80) { // 80% 减少耐久 稳定但又不太稳定
+            if (r < 20) { // 20% 减少耐久 稳定但又不太稳定
                 if (!player.getAbilities().creativeMode) {
                     stack.damage(1, player, (p) -> {
                         p.sendToolBreakStatus(player.getActiveHand());
