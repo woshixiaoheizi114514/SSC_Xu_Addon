@@ -1,12 +1,5 @@
 {
   "type": "apoli:multiple",
-  "low_mining": {
-    "type": "apoli:modify_break_speed",
-    "modifier": {
-      "operation": "multiply_base",
-      "value": -0.25
-    }
-  },
   "cost_mana": {
     "type": "apoli:action_over_time",
     "entity_action": {

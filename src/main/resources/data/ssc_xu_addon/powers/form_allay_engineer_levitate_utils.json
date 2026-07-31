@@ -48,9 +48,14 @@
     },
     "low_mining": {
         "type": "apoli:modify_break_speed",
+        "block_condition": {
+            "type": "apoli:hardness",
+            "comparison": ">=",
+            "compare_to": 1
+        },
         "modifier": {
             "operation": "multiply_base",
-            "value": -0.5
+            "value": -0.50
         },
         "condition": {
             "type": "apoli:power_active",
