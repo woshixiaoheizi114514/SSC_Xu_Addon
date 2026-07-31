@@ -1,6 +1,8 @@
 package xu_mod.SSCXuAddon.data.item.tools;
 
 import net.minecraft.client.item.TooltipContext;
+import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
@@ -45,7 +47,9 @@ public class SpaceBag extends Item {
     public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
         // 我看过不少这种背包Mod刷物品的方法 还是价格配置来减少刷物品影响(发现即可在不更新时停止刷物品)
         if (user instanceof PlayerEntity player && !world.isClient && Init_Config.serverConfig.enableSpaceBag) {
-            InventoryMenuUtils.openItemSpaceBag(player, stack, 9);
+            int enchantmentLevel = EnchantmentHelper.getLevel(Enchantments.EFFICIENCY, stack);
+            enchantmentLevel = Math.min(Math.max(0, enchantmentLevel), 5);
+            InventoryMenuUtils.openItemSpaceBag(player, stack, 9 + enchantmentLevel * 9);
             world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.BLOCK_ENDER_CHEST_OPEN, SoundCategory.PLAYERS, 1.0F, 1.0F);
         }
         return stack;

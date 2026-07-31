@@ -28,6 +28,15 @@ public class InventoryMenuUtils {
                 case 3 -> {
                     screenHandler = new GenericContainerScreenHandler(ScreenHandlerType.GENERIC_9X3, syncId, inventory, SpaceBagInventory, 3);
                 }
+                case 4 -> {
+                    screenHandler = new GenericContainerScreenHandler(ScreenHandlerType.GENERIC_9X4, syncId, inventory, SpaceBagInventory, 4);
+                }
+                case 5 -> {
+                    screenHandler = new GenericContainerScreenHandler(ScreenHandlerType.GENERIC_9X5, syncId, inventory, SpaceBagInventory, 5);
+                }
+                case 6 -> {
+                    screenHandler = new GenericContainerScreenHandler(ScreenHandlerType.GENERIC_9X6, syncId, inventory, SpaceBagInventory, 6);
+                }
                 default -> {
                     SSCXuAddon.LOGGER.error("openPlayerSpaceBag: SlotLevel is not 1, 2 or 3");
                 }

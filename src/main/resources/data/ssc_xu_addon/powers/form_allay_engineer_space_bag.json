@@ -5,7 +5,7 @@
     "actions": [
       {
         "type": "ssc_xu_addon:open_player_space_bag",
-        "slot_level": 2
+        "slot_level": 4
       },
       {
         "type": "apoli:play_sound",

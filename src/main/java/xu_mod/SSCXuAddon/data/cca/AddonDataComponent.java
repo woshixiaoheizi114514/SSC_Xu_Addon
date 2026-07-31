@@ -19,7 +19,7 @@ public class AddonDataComponent implements AutoSyncedComponent {
     public int shieldMax = 0;  // 护盾最大值
     public int shieldStrength = 0;  // 护盾强度
 
-    private static final int SpaceBagSlotCount = 27;
+    private static final int SpaceBagSlotCount = 54;
     private SimpleInventory SpaceBag = new SimpleInventory(SpaceBagSlotCount);
 
     public int getManaLevel() {
