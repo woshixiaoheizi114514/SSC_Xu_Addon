@@ -11,7 +11,7 @@
           "actions": [
             {
               "type": "ssc_xu_addon:add_gossip_trade",
-              "value": 25
+              "value": 40
             },
             {
               "type": "apoli:target_action",
@@ -53,7 +53,7 @@
   "condition": {
     "type": "ssc_xu_addon:is_not_cooldown",
     "cooldown_id": "ssc_xu_addon:feral_cat_restock",
-    "cooldown_time": 600
+    "cooldown_time": 200
   },
   "cooldown": 1,
   "hud_render": {

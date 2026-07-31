@@ -3,6 +3,8 @@ package xu_mod.SSCXuAddon.data.item;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.passive.IronGolemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
@@ -53,7 +55,7 @@ public class EmeraldEssence extends Item {
             if (RegPlayerForms.FERAL_CAT_SP.isPlayerForm(player) && !user.isSneaking()) {
                 player.sendMessage(Text.translatable("message.ssc_xu_addon.item.emerald_essence.special_form").formatted(Formatting.YELLOW), false);
                 TransformManager.startTransform(player, Init_Form.FeralCatVF, null);
-            } else if (Init_Form.FeralCatVF.isPlayerForm(player)) {
+            } else if (Init_Form.FeralCatVF.isPlayerForm(player) && !user.isSneaking()) {
                 // 召唤铁傀儡
                 BlockPos pos = MinionRegister.getNearbyEmptySpace(player.getWorld(), player.getRandom(), player.getBlockPos(), 7, 5, 3, 8);
                 if (pos == null) {
@@ -71,6 +73,8 @@ public class EmeraldEssence extends Item {
                 int random = player.getRandom().nextInt(8 + 16) - 8;
                 emeraldCount += random;
                 player.giveItemStack(new ItemStack(Items.EMERALD, emeraldCount));
+                player.addStatusEffect(new StatusEffectInstance(StatusEffects.LUCK, 6000, 5, false, true));  // +5 Luck 5min
+                // 成就挂点 -> 钱能通神 CatVF拆解精粹
                 world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.BLOCK_AMETHYST_BLOCK_BREAK, SoundCategory.PLAYERS, 1.0F, 1.0F);
             }
             if (!player.getAbilities().creativeMode) {

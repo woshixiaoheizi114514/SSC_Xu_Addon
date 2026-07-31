@@ -65,6 +65,16 @@
               }
             },
             "weight": 2
+          },
+          {
+            "element": {
+              "type": "apoli:give",
+              "stack": {
+                "item": "minecraft:netherite_scrap",
+                "count": 1
+              }
+            },
+            "weight": 1
           }
         ]
       },

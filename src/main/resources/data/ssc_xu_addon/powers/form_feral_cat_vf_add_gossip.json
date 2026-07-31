@@ -6,9 +6,9 @@
     "bientity_action": {
       "type": "ssc_xu_addon:add_gossip_extra",
       "extra_reputation_type": "CAT_VF",
-      "gossip_base": 10.0,
-      "gossip_target": 150.0,
-      "gossip_add_factor": 0.10
+      "gossip_base": 18.0,
+      "gossip_target": 210.0,
+      "gossip_add_factor": 0.12
     }
   },
   "interval": 600
