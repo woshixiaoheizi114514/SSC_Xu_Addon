@@ -51,19 +51,19 @@ public class ShapeKiller extends Enchantment {
             PlayerFormBase form = RegPlayerFormComponent.PLAYER_FORM.get(player).getCurrentForm();
             switch (form.getPhase()) {
                 case PHASE_0 -> {
-                    return 0.5f;
+                    return 1.0f;
                 }
                 case PHASE_1 -> {
-                    return 1.0f;
-                }
-                case PHASE_2 -> {
                     return 1.5f;
                 }
-                case PHASE_3 -> {
+                case PHASE_2 -> {
                     return 2.0f;
                 }
+                case PHASE_3 -> {
+                    return 3.0f;
+                }
                 case PHASE_SP -> {
-                    return 1.0f;
+                    return 1.5f;
                 }
                 case PHASE_CLEAR -> {
                     return 0.0f;
