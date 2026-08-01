@@ -75,7 +75,7 @@ public class FormStoreStone extends Item {
             StatusEffectInstance immobilityEffect = new StatusEffectInstance(StatusEffects.SLOWNESS, 100, 245);
             player.addStatusEffect(immobilityEffect);
             ModPacketsS2CServer.sendNoJumpTick(player, 100);
-            player.getItemCooldownManager().set(this, 1200);
+            player.getItemCooldownManager().set(this, 200);  // 10s冷却
         }
         return stack;
     }
