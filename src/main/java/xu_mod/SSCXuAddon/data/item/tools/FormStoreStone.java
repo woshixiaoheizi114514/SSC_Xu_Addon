@@ -68,7 +68,7 @@ public class FormStoreStone extends Item {
                 setStoredForm(stack, null);
             }
             world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.ENTITY_EVOKER_PREPARE_SUMMON, SoundCategory.PLAYERS, 1.0F, 1.0F);
-            player.getItemCooldownManager().set(this, 1200);
+            player.getItemCooldownManager().set(this, 200);  // 10s冷却
         }
         return stack;
     }
