@@ -79,9 +79,9 @@ public class ShieldRing extends AccessoryItem {
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         tooltip.add(Text.translatable("item.ssc_xu_addon.shield_ring.tooltip").formatted(Formatting.YELLOW));
-        tooltip.add(Text.translatable("message.ssc_xu_addon.max_shield_count.p", 3).formatted(Formatting.BLUE));
+        tooltip.add(Text.translatable("message.ssc_xu_addon.max_shield_count.p", 5).formatted(Formatting.BLUE));
         tooltip.add(Text.translatable("message.ssc_xu_addon.shield_strength.p", 5).formatted(Formatting.BLUE));
-        tooltip.add(Text.translatable("message.ssc_xu_addon.shield_regen.tooltip.p", 1, 10).formatted(Formatting.BLUE));
+        tooltip.add(Text.translatable("message.ssc_xu_addon.shield_regen.tooltip.p", 1, 7.5).formatted(Formatting.BLUE));
         tooltip.add(Text.translatable("item.ssc_xu_addon.shield_ring.tooltip2").formatted(Formatting.BLUE));
     }
 }
