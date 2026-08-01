@@ -34,7 +34,7 @@ public class NineLiveCharm extends AccessoryItem implements Vanishable {
     public static void OnTrigger(PlayerEntity player, ItemStack itemStack) {
         player.setHealth(player.getMaxHealth() * 0.5f);  // 恢复一半生命值
         itemStack.damage(1, player, (entity) -> {});  // 消耗耐久
-        player.getItemCooldownManager().set(itemStack.getItem(), 6000);  // 5分钟冷却
+        player.getItemCooldownManager().set(itemStack.getItem(), 600);  // 30秒冷却
         if (player instanceof ServerPlayerEntity serverPlayerEntity) {
             ModPacketsServer.sendTriggerNineLiveCharm(serverPlayerEntity);
         }

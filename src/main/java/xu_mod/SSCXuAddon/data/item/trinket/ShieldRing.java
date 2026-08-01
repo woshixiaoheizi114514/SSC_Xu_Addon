@@ -28,7 +28,7 @@ public class ShieldRing extends AccessoryItem {
                             }
                             return false;
                         },
-                        3
+                        5
                 )
         );
         ShieldUtils.ShieldStrengthModifiers.add(
@@ -44,7 +44,7 @@ public class ShieldRing extends AccessoryItem {
                 )
         );
         ShieldUtils.onShieldBreakCallBack.add(
-                player -> player.getItemCooldownManager().set(Init_Item.SHIELD_RING, 300)
+                player -> player.getItemCooldownManager().set(Init_Item.SHIELD_RING, 300)  // 15s
         );
     }
 
@@ -57,7 +57,7 @@ public class ShieldRing extends AccessoryItem {
         if (accessoryOwner instanceof PlayerEntity player) {
             if (!player.getItemCooldownManager().isCoolingDown(Init_Item.SHIELD_RING)) {
                 ShieldUtils.addShield(player, 1);
-                player.getItemCooldownManager().set(Init_Item.SHIELD_RING, 200);
+                player.getItemCooldownManager().set(Init_Item.SHIELD_RING, 150);  // 7.5s
             }
         }
     }
