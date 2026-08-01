@@ -2,6 +2,8 @@ package xu_mod.SSCXuAddon.data.item.trinket;
 
 import me.shedaniel.cloth.clothconfig.shadowed.blue.endless.jankson.annotation.Nullable;
 import net.minecraft.client.item.TooltipContext;
+import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -18,10 +20,12 @@ import xu_mod.SSCXuAddon.init.Init_Form;
 import java.util.List;
 
 public class MoistureKeptCharm extends AccessoryItem {
-    public int MaxManaStore = 1500;
+    // 满充能用30min 需要30s充能
+    public int MaxManaBase = 1800;
+    public int MaxManaPerLevel = 900;
     public float ManaRegenStartPercent = 0.95f;
     public int ManaRegenRate = 3;
-    public int ManaRegenInWater = 50;
+    public int ManaRegenInWater = 60;
     public static final String StoreManaTag = "axolotl_mana_store";
 
     public MoistureKeptCharm(Settings settings) {
@@ -54,8 +58,9 @@ public class MoistureKeptCharm extends AccessoryItem {
         if (nbtCompound.contains(StoreManaTag)) {
             return nbtCompound.getInt(StoreManaTag);
         }
-        this.setManaStore(stack, this.MaxManaStore);
-        return this.MaxManaStore;
+        int maxMana = this.getMaxManaStore(stack);
+        this.setManaStore(stack, maxMana);
+        return maxMana;
     }
 
     public void setManaStore(ItemStack stack, int manaStore) {
@@ -63,12 +68,18 @@ public class MoistureKeptCharm extends AccessoryItem {
     }
 
     public void addManaStore(ItemStack stack, int manaStore) {
-        this.setManaStore(stack, Math.max(0, Math.min(this.MaxManaStore, this.getManaStore(stack) + manaStore)));
+        this.setManaStore(stack, Math.max(0, Math.min(this.getMaxManaStore(stack), this.getManaStore(stack) + manaStore)));
+    }
+
+    public int getMaxManaStore(ItemStack stack) {
+        int enchantmentLevel = EnchantmentHelper.getLevel(Enchantments.EFFICIENCY, stack);
+        enchantmentLevel = Math.min(Math.max(0, enchantmentLevel), 5);
+        return MaxManaBase + enchantmentLevel * MaxManaPerLevel;
     }
 
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         tooltip.add(Text.translatable("item.ssc_xu_addon.moisture_kept_charm.tooltip").formatted(Formatting.AQUA));
-        tooltip.add(Text.translatable("item.ssc_xu_addon.moisture_kept_charm.count", this.getManaStore(stack), this.MaxManaStore).formatted(Formatting.AQUA));
+        tooltip.add(Text.translatable("item.ssc_xu_addon.moisture_kept_charm.count", this.getManaStore(stack), this.getMaxManaStore(stack)).formatted(Formatting.AQUA));
     }
 }
