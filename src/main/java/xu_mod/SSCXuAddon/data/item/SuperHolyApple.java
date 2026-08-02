@@ -27,6 +27,10 @@ public class SuperHolyApple extends Item {
             return FinalStack;
         }
         if (user instanceof PlayerEntity player) {
+            if (RegPlayerForms.ORIGINAL_BEFORE_ENABLE.isPlayerForm(player)) {
+                player.sendMessage(Text.translatable("message.ssc_xu_addon.item.super_holy_apple.no_effect").formatted(Formatting.YELLOW), false);
+                // TODO 后续加个成就
+            }
             if (RegPlayerForms.ORIGINAL_SHIFTER.isPlayerForm(player)) {
                 TransformManager.startTransform(player, RegPlayerForms.ORIGINAL_BEFORE_ENABLE, null);
                 player.sendMessage(Text.translatable("message.ssc_xu_addon.item.super_holy_apple.effect").formatted(Formatting.YELLOW), false);
