@@ -11,6 +11,7 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.world.World;
 import net.minecraft.world.explosion.Explosion;
+import net.onixary.shapeShifterCurseFabric.player_form.PlayerFormBase;
 import net.onixary.shapeShifterCurseFabric.player_form.RegPlayerForms;
 import net.onixary.shapeShifterCurseFabric.player_form.ability.RegPlayerFormComponent;
 import net.onixary.shapeShifterCurseFabric.player_form.transform.TransformManager;
@@ -28,7 +29,12 @@ public class SuperHolyApple extends Item {
             return FinalStack;
         }
         if (user instanceof PlayerEntity player) {
-            if (RegPlayerForms.ORIGINAL_SHIFTER.equals(RegPlayerFormComponent.PLAYER_FORM.get(player).getCurrentForm())) {
+            PlayerFormBase form = RegPlayerFormComponent.PLAYER_FORM.get(player).getCurrentForm();
+            if (RegPlayerForms.ORIGINAL_BEFORE_ENABLE.equals(form)) {
+                player.sendMessage(Text.translatable("message.ssc_xu_addon.item.super_holy_apple.no_effect").formatted(Formatting.YELLOW), false);
+                // TODO 后续加个成就
+            }
+            if (RegPlayerForms.ORIGINAL_SHIFTER.equals(form)) {
                 TransformManager.handleDirectTransform(player, RegPlayerForms.ORIGINAL_BEFORE_ENABLE, false);
                 player.sendMessage(Text.translatable("message.ssc_xu_addon.item.super_holy_apple.effect").formatted(Formatting.YELLOW), false);
                 return FinalStack;
