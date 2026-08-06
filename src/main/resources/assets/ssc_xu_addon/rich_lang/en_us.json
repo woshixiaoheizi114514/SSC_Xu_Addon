@@ -361,8 +361,9 @@
   ],
   "codex.form.ssc_xu_addon.spider_undead.pros": [
     "You possess a Web Value resource bar that regenerates over time. You can also replenish it by slaying creatures or consuming string.\n\n",
-    "Hold the Active Ability (1) key to charge, and whether you are sneaking determines the effect: when not sneaking, you fire a Web Projectile—hitting the side or bottom of a block generates vertical bridge web, and hitting a creature inflicts Slowness, Weakness, and \"Entangled\" (which accumulates into \"Cocooning\", immobilizing the target); when sneaking, you create a horizontal bridge web whose dimensions depend on charge level.\n",
-    "Press Active Ability (2) to consume Web Value and satiation (one summon per 4 points of satiation) to summon small spiders to fight for you, up to 2 at a time, while keeping at least 6 satiation. When these spiders die, they spread Entangled to nearby creatures.\n\n",
+    "Hold Active Skill (1) to charge and fire a web projectile. Hitting the side or bottom of a block creates a vertical bridge web. Hitting a creature applies Slowness, Weakness, and the 'Entangled' effect (which accumulates into 'Cocooned', immobilizing the target). While sneaking, creates a horizontal web bridge, with its length and width scaling with charge level.\n",
+    "Hold Active Skill (2) to charge and create a web bridge. Its length and width scale with charge level.\n",
+    "Press Active Ability (3) to consume Web Value and satiation (one summon per 4 points of satiation) to summon small spiders to fight for you, up to 2 at a time, while keeping at least 6 satiation. When these spiders die, they spread Entangled to nearby creatures.\n\n",
     "Your attacks deal 2 extra damage to creatures with Entangled; if the target is Cocooned, your attacks heal you for 2 HP and restore some Web Value.\n",
     "The undead power within your body allows you to cheat death: cooldown 2 minutes. When triggered, you gain Invisibility and spawn 4 small spiders.\n",
     "When you have summons, damage dealt to you is transferred to them: one summon is randomly chosen to take damage equal to 2× the incoming damage (before armour); if it dies, the remainder is passed to the next, until all are dead or the damage is exhausted.\n\n",
