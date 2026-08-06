@@ -87,7 +87,7 @@ public class Init_ManaType {
     public static Identifier MC_ALLOW_WATER_BREATH_MANA_REGAN = ManaRegistries.registerManaConditionType(
             SSCXuAddon.identifier("allow_water_breath_mana_regan"),
             (player) -> {
-                return player.hasStatusEffect(StatusEffects.WATER_BREATHING) && ManaUtils.getPlayerManaPercent(player, 1.0f) < 0.575f;  // 防止血量上限跳动
+                return player.hasStatusEffect(StatusEffects.WATER_BREATHING) && ManaUtils.getPlayerManaPercent(player, 1.0f) < 0.65f;  // 防止血量上限跳动
             }
     );
 
