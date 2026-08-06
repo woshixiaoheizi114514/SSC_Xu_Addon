@@ -131,7 +131,7 @@
     "modifier": {
       "name": "wet health base",
       "attribute": "minecraft:generic.max_health",
-      "value": -10,
+      "value": -8,
       "operation": "addition"
     }
   }
