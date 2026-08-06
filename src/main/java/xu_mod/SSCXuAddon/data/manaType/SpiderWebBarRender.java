@@ -16,6 +16,7 @@ import xu_mod.SSCXuAddon.init.Init_CCA;
 
 public class SpiderWebBarRender implements IManaRender {
     private ChargePower powerTemp_1;
+    private ChargePower powerTemp_2;
     private int powerTempTimer = 0;
 
     private static final MinecraftClient mc = MinecraftClient.getInstance();
@@ -37,9 +38,13 @@ public class SpiderWebBarRender implements IManaRender {
         // 每帧查一次有点费性能 还是每60帧查一次吧(渲染帧)
         if (powerTempTimer > 60) {
             powerTemp_1 = null;
+            powerTemp_2 = null;
             for (ChargePower power : PowerHolderComponent.getPowers(mc.player, ChargePower.class)) {
-                if (SSCXuAddon.identifier("web_charge").equals(power.chargePowerID)) {
+                if (ShapeShifterCurseFabric.identifier("web_charge_1").equals(power.chargePowerID)) {
                     powerTemp_1 = power;
+                }
+                if (ShapeShifterCurseFabric.identifier("web_charge_2").equals(power.chargePowerID)) {
+                    powerTemp_2 = power;
                 }
             }
             powerTempTimer = 0;
@@ -48,6 +53,9 @@ public class SpiderWebBarRender implements IManaRender {
         int RTier = 0;
         if (powerTemp_1 != null) {
             RTier = Math.max(RTier, powerTemp_1.renderTier);
+        }
+        if (powerTemp_2 != null) {
+            RTier = Math.max(RTier, powerTemp_2.renderTier);
         }
         return RTier;
     }
