@@ -16,7 +16,7 @@
             },
             {
                 "type": "shape-shifter-curse:consume_mana",
-                "mana": 3
+                "mana": 2
             },
             {
                 "type": "apoli:spawn_particles",

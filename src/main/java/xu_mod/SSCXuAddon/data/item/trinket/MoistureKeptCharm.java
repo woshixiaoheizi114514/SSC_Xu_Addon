@@ -6,10 +6,12 @@ import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.vehicle.BoatEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.onixary.shapeShifterCurseFabric.items.accessory.AccessoryItem;
 import net.onixary.shapeShifterCurseFabric.mana.ManaUtils;
@@ -18,12 +20,12 @@ import xu_mod.SSCXuAddon.init.Init_Form;
 import java.util.List;
 
 public class MoistureKeptCharm extends AccessoryItem {
-    // 满充能用30min 需要30s充能
-    public int MaxManaBase = 1800;
-    public int MaxManaPerLevel = 900;
+    public int MaxManaBase = 3600;
+    public int MaxManaPerLevel = 1200;
     public float ManaRegenStartPercent = 0.95f;
     public int ManaRegenRate = 3;
-    public int ManaRegenInWater = 60;
+    public int ManaReganPerLevel = 1;
+    public int ManaRegenInWater = 120;
     public static final String StoreManaTag = "axolotl_mana_store";
 
     public MoistureKeptCharm(Settings settings) {
@@ -40,11 +42,14 @@ public class MoistureKeptCharm extends AccessoryItem {
             double mana_max = ManaUtils.getPlayerMaxMana(player);
             int mana_store = this.getManaStore(stack);
             if (ManaUtils.getPlayerMana(player) < mana_max * ManaRegenStartPercent) {
-                int regenValue = Math.min(ManaRegenRate, mana_store);
+                int enchantmentLevel = EnchantmentHelper.getLevel(Enchantments.EFFICIENCY, stack);
+                enchantmentLevel = Math.min(Math.max(0, enchantmentLevel), 5);
+                int regenValue = ManaRegenRate + enchantmentLevel * ManaReganPerLevel;
+                regenValue = Math.min(regenValue, mana_store);
                 ManaUtils.gainPlayerMana(player, regenValue);
                 this.addManaStore(stack, -regenValue);
             }
-            if (player.isSubmergedInWater()) {
+            if (player.isSubmergedInWater() || player.getWorld().hasRain(player.getVehicle() instanceof BoatEntity ? (BlockPos.ofFloored(player.getX(), (double) Math.round(player.getY()), player.getZ())).up() : BlockPos.ofFloored(player.getX(), (double) Math.round(player.getY()), player.getZ()))) {
                 this.addManaStore(stack, ManaRegenInWater);
             }
         }

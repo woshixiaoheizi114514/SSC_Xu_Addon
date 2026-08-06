@@ -2,6 +2,7 @@ package xu_mod.SSCXuAddon.init;
 
 import io.github.apace100.apoli.component.PowerHolderComponent;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.vehicle.BoatEntity;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Pair;
@@ -82,6 +83,14 @@ public class Init_ManaType {
                 return player.isCreative() && Init_Config.serverConfig.creativeInfinityMana;
             }
     );
+
+    public static Identifier MC_ALLOW_WATER_BREATH_MANA_REGAN = ManaRegistries.registerManaConditionType(
+            SSCXuAddon.identifier("allow_water_breath_mana_regan"),
+            (player) -> {
+                return player.hasStatusEffect(StatusEffects.WATER_BREATHING) && ManaUtils.getPlayerManaPercent(player, 1.0f) < 0.575f;  // 防止血量上限跳动
+            }
+    );
+
 
     // 正常 500/5
     // 夜晚 500/4
@@ -323,7 +332,14 @@ public class Init_ManaType {
                             SSCXuAddon.identifier("in_rain"),
                             new Pair<Identifier, ManaUtils.Modifier>(
                                     MC_InRain,
-                                    new ManaUtils.Modifier(0.525d, 1.0d, 0d)  // +2.5 per sec
+                                    new ManaUtils.Modifier(0.525d, 1.0d, 0d)  // +10.5 per sec
+                            )
+                    ),
+                    new Pair<Identifier, Pair<Identifier, ManaUtils.Modifier>>(
+                            SSCXuAddon.identifier("water_breath"),
+                            new Pair<Identifier, ManaUtils.Modifier>(
+                                    MC_ALLOW_WATER_BREATH_MANA_REGAN,
+                                    new ManaUtils.Modifier(0.125d, 1.0d, 0d)  // +2.5 per sec
                             )
                     ),
                     new Pair<Identifier, Pair<Identifier, ManaUtils.Modifier>>(
