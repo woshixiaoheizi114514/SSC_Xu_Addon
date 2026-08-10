@@ -1,3 +1,4 @@
+本分支仅为构建用（只构建基于ssc1.10.0的xuaddon，因为我没有能力去修复基于1.9.2的xuaddon的构建失败问题 还请见谅）感谢xu233的贡献。
 # SSC Xu Addon
 ### ShapeShifterCurse Xu Addon
 ### 最新版本(仓库版本): 1.5.0 (1.5.0)
