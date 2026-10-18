@@ -38,7 +38,7 @@ public class Init_Event {
                     if (Init_Item.BLOOD_CLAW.equals(mainHandStack.getItem())) {
                         float FinalBloodAmount = BloodClaw.addBloodAmount(mainHandStack, player.getRandom().nextFloat() * 7.5f);  // 0.0f -> 7.5f
                         if (FinalBloodAmount >= BloodClaw.MaxBloodAmount) {
-                            player.giveItemStack(new ItemStack(Init_Item.BLOOD_GEM));
+                            Utils.givePlayerItem(player, new ItemStack(Init_Item.BLOOD_GEM, 1));
                             BloodClaw.setBloodAmount(mainHandStack, 0.0f);
                         }
                     }

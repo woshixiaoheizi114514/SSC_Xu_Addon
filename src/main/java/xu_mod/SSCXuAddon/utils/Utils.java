@@ -2,6 +2,7 @@ package xu_mod.SSCXuAddon.utils;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Vec3d;
@@ -78,5 +79,14 @@ public class Utils {
 
     public static boolean IsTransformativeMob(Entity entity) {
         return entity instanceof ITMob;
+    }
+
+    public static void givePlayerItem(PlayerEntity player, ItemStack... stacks) {
+        for (ItemStack stack : stacks) {
+            boolean success = player.giveItemStack(stack);
+            if (!success) {
+                player.dropItem(stack, false);
+            }
+        }
     }
 }
