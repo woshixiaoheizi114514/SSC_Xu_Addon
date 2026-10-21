@@ -1,0 +1,8 @@
+{
+  "type": "ssc_xu_addon:mana_type_power_pro",
+  "mana_type": "ssc_xu_addon:anubis_wolf_soul_resource",
+  "mana_source": "ssc_xu_addon:form_anubis_wolf_soulkeeper",
+  "default_max": false,
+  "default_min": false,
+  "default_value": 6.0
+}

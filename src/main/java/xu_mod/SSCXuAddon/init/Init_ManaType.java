@@ -91,6 +91,30 @@ public class Init_ManaType {
             }
     );
 
+    public static Identifier MC_ANUBIS_WOLF_SOUL_CAN_REGEN = ManaRegistries.registerManaConditionType(
+            SSCXuAddon.identifier("anubis_wolf_soul_can_regen"),
+            (player) -> {
+                return ManaUtils.getPlayerMana(player) < 6;
+            }
+    );
+
+    public static Identifier MC_ANUBIS_WOLF_SOUL_HAS_SOUL = ManaRegistries.registerManaConditionType(
+            SSCXuAddon.identifier("anubis_wolf_soul_has_soul"),
+            (player) -> {
+                return ManaUtils.getPlayerMana(player) > 6;
+            }
+    );
+
+    public static Identifier MC_ANUBIS_WOLF_SOUL_CAN_LOSE = ManaRegistries.registerManaConditionType(
+            SSCXuAddon.identifier("anubis_wolf_soul_can_lose"),
+            (player) -> {
+                double mana = ManaUtils.getPlayerMana(player) - 6;
+                double maxMana = ManaUtils.getPlayerMaxMana(player) - 6;
+                int floorMax = (int) Math.floor(maxMana);
+                int threshold = floorMax - floorMax / 2;
+                return mana > threshold;
+            }
+    );
 
     // 正常 500/5
     // 夜晚 500/4
@@ -382,7 +406,7 @@ public class Init_ManaType {
             ManaRegistries.EMPTY_MANA_HANDLER
     );
 
-    public static Identifier WolfSoulResource = ManaRegistries.registerManaType(SSCXuAddon.identifier("wolf_soul_resource"),
+    public static Identifier AnubisWolfSoulResource = ManaRegistries.registerManaType(SSCXuAddon.identifier("anubis_wolf_soul_resource"),
             new ManaUtils.ModifierList(
                     new Pair<Identifier, Pair<Identifier, ManaUtils.Modifier>>(
                             ShapeShifterCurseFabric.identifier("base_value"),
@@ -392,7 +416,22 @@ public class Init_ManaType {
                             )
                     )
             ),
-            new ManaUtils.ModifierList(),
+            new ManaUtils.ModifierList(
+                    new Pair<Identifier, Pair<Identifier, ManaUtils.Modifier>>(
+                            SSCXuAddon.identifier("negative_regen"),
+                            new Pair<Identifier, ManaUtils.Modifier>(
+                                    MC_ANUBIS_WOLF_SOUL_CAN_REGEN,
+                                    new ManaUtils.Modifier(1.0d / 600.0d, 1.0d, 0d)  // +1 per 30 sec (600 ticks)
+                            )
+                    ),
+                    new Pair<Identifier, Pair<Identifier, ManaUtils.Modifier>>(
+                            SSCXuAddon.identifier("overcharge_lose"),
+                            new Pair<Identifier, ManaUtils.Modifier>(
+                                    MC_ANUBIS_WOLF_SOUL_CAN_LOSE,
+                                    new ManaUtils.Modifier(-1.0d / 600.0d, 1.0d, 0d)  // -1 per 30 sec (600 ticks)
+                            )
+                    )
+            ),
             ManaRegistries.EMPTY_MANA_HANDLER
     );
 

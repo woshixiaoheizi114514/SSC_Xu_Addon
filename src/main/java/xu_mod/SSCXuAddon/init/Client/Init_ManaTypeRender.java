@@ -1,7 +1,6 @@
 package xu_mod.SSCXuAddon.init.Client;
 
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.network.PacketByteBuf;
 import net.onixary.shapeShifterCurseFabric.mana.ManaRegistriesClient;
 import net.onixary.shapeShifterCurseFabric.mana.ManaUtils;
 import xu_mod.SSCXuAddon.SSCXuAddon;
@@ -22,7 +21,7 @@ public class Init_ManaTypeRender {
         }));
         ManaRegistriesClient.registerManaTypeRender(Init_ManaType.AxolotlWaterResource, new DefaultResourceBarRender(SSCXuAddon.identifier("textures/gui/water_bar.png"), false, true, true, 0xFF70F3FF));
         ManaRegistriesClient.registerManaTypeRender(Init_ManaType.SpiderWebResource, new SpiderWebBarRender());
-        ManaRegistriesClient.registerManaTypeRender(Init_ManaType.WolfSoulResource, new WolfSoulBarRender());
+        ManaRegistriesClient.registerManaTypeRender(Init_ManaType.AnubisWolfSoulResource, new WolfSoulBarRender());
     }
 
     public static void init() {}

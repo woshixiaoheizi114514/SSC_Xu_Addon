@@ -16,11 +16,13 @@ import xu_mod.SSCXuAddon.SSCXuAddon;
 public class ManaTypePowerV2 extends ManaTypePower {
     private @Nullable Identifier manaType = null;
     private Identifier manaSource = null;
+    private double DefaultValue = 0.0d;
     private boolean DefaultMax;
     private boolean DefaultMin;
 
-    public ManaTypePowerV2(PowerType<?> type, LivingEntity entity, Identifier manaType, Identifier manaSource, boolean DefaultMax, boolean DefaultMin) {
+    public ManaTypePowerV2(PowerType<?> type, LivingEntity entity, Identifier manaType, Identifier manaSource, double DefaultValue, boolean DefaultMax, boolean DefaultMin) {
         super(type, entity, manaType, manaSource);
+        this.DefaultValue = DefaultValue;
         this.DefaultMax = DefaultMax;
         this.DefaultMin = DefaultMin;
         this.manaType = manaType;
@@ -45,6 +47,9 @@ public class ManaTypePowerV2 extends ManaTypePower {
                 if (this.DefaultMin) {
                     ManaUtils.setPlayerMana(playerEntity, 0.0f);
                 }
+                if (!(this.DefaultMax || this.DefaultMin)) {
+                    ManaUtils.setPlayerMana(playerEntity, this.DefaultValue);
+                }
             }
         }
 
@@ -65,6 +70,9 @@ public class ManaTypePowerV2 extends ManaTypePower {
                 if (this.DefaultMin) {
                     ManaUtils.setPlayerMana(playerEntity, 0.0f);
                 }
+                if (!(this.DefaultMax || this.DefaultMin)) {
+                    ManaUtils.setPlayerMana(playerEntity, this.DefaultValue);
+                }
             }
         }
     }
@@ -75,10 +83,11 @@ public class ManaTypePowerV2 extends ManaTypePower {
                 new SerializableData()
                         .add("mana_type", SerializableDataTypes.IDENTIFIER, null)
                         .add("mana_source", SerializableDataTypes.IDENTIFIER, null)
+                        .add("default_value", SerializableDataTypes.DOUBLE, 0.0d)
                         .add("default_max", SerializableDataTypes.BOOLEAN, false)
                         .add("default_min", SerializableDataTypes.BOOLEAN, false),
                 (data) -> (type, entity) ->
-                        new ManaTypePowerV2(type, entity, data.get("mana_type"), data.get("mana_source"), data.get("default_max"), data.get("default_min"))
+                        new ManaTypePowerV2(type, entity, data.get("mana_type"), data.get("mana_source"), data.get("default_value"), data.get("default_max"), data.get("default_min"))
         );
     }
 }
