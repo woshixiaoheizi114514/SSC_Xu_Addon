@@ -382,6 +382,20 @@ public class Init_ManaType {
             ManaRegistries.EMPTY_MANA_HANDLER
     );
 
+    public static Identifier WolfSoulResource = ManaRegistries.registerManaType(SSCXuAddon.identifier("wolf_soul_resource"),
+            new ManaUtils.ModifierList(
+                    new Pair<Identifier, Pair<Identifier, ManaUtils.Modifier>>(
+                            ShapeShifterCurseFabric.identifier("base_value"),
+                            new Pair<Identifier, ManaUtils.Modifier>(
+                                    MC_AlwaysTrue,
+                                    new ManaUtils.Modifier(18.99d, 1.0d, 0d)
+                            )
+                    )
+            ),
+            new ManaUtils.ModifierList(),
+            ManaRegistries.EMPTY_MANA_HANDLER
+    );
+
     static {
         ManaRegistries.modifyManaRegenModifier(ManaRegistries.FAMILIAR_FOX_MANA, modifierList -> {
             modifierList.add(

@@ -1,6 +1,7 @@
 package xu_mod.SSCXuAddon.command;
 
 import com.mojang.brigadier.CommandDispatcher;
+import com.mojang.brigadier.arguments.DoubleArgumentType;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
@@ -27,7 +28,7 @@ public class SSC_Xu_Addon_Command {
         dispatcher.register(
                 CommandManager.literal("ssc_xu_addon").requires(cs -> cs.hasPermissionLevel(2))
                         .then(CommandManager.literal("set_mana")
-                                .then(CommandManager.argument("mana", IntegerArgumentType.integer())
+                                .then(CommandManager.argument("mana", DoubleArgumentType.doubleArg())
                                         .executes(SSC_Xu_Addon_Command::setMana)
                                 )
                         )
@@ -49,7 +50,7 @@ public class SSC_Xu_Addon_Command {
 
     private static int setMana(CommandContext<ServerCommandSource> commandContext) throws CommandSyntaxException {
         PlayerEntity owner = commandContext.getSource().getPlayer();
-        int mana = IntegerArgumentType.getInteger(commandContext, "mana");
+        double mana = DoubleArgumentType.getDouble(commandContext, "mana");
         if (owner != null) {
             ManaUtils.setPlayerMana(owner, mana);
         }
