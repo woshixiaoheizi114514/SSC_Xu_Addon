@@ -26,10 +26,7 @@ import xu_mod.SSCXuAddon.data.item.UndeadEssence;
 import xu_mod.SSCXuAddon.data.item.trinket.NineLiveCharm;
 import xu_mod.SSCXuAddon.init.Init_Apoli;
 import xu_mod.SSCXuAddon.init.Init_Item;
-import xu_mod.SSCXuAddon.powers.AllayPower;
-import xu_mod.SSCXuAddon.powers.LeveledManaModifyDamageDealtPower;
-import xu_mod.SSCXuAddon.powers.MinionShieldPower;
-import xu_mod.SSCXuAddon.powers.SpeedDamageBoostPower;
+import xu_mod.SSCXuAddon.powers.*;
 import xu_mod.SSCXuAddon.utils.ShieldUtils;
 
 import java.util.ArrayList;
@@ -52,6 +49,9 @@ public class LivingEntityMixin {
                 }
                 for (SpeedDamageBoostPower power : PowerHolderComponent.getPowers(source.getAttacker(), SpeedDamageBoostPower.class)) {
                     newValue = power.modifyDamageDealt(source, newValue, thisAsLiving);
+                }
+                for (WolfSoulPower power : PowerHolderComponent.getPowers(source.getAttacker(), WolfSoulPower.class)) {
+                    power.onHit(source, newValue, thisAsLiving);
                 }
             }
         }

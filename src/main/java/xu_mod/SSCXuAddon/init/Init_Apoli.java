@@ -39,6 +39,7 @@ public class Init_Apoli {
         Init_Apoli.registerPower(AutoFeedPower.createFactory());
         Init_Apoli.registerPower(MinionShieldPower.createFactory());
         Init_Apoli.registerPower(SpiderMinionShieldPower.createFactory());
+        Init_Apoli.registerPower(WolfSoulPower.createFactory());
 
         // Skill Power
         Init_Apoli.registerPower(OcelotRush1Power.createFactory());
