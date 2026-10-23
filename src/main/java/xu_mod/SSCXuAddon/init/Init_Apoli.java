@@ -14,6 +14,7 @@ import xu_mod.SSCXuAddon.SSCXuAddon;
 import xu_mod.SSCXuAddon.powers.*;
 import xu_mod.SSCXuAddon.powers.magic.MagicUtils;
 import xu_mod.SSCXuAddon.powers.skills.OcelotRush1Power;
+import xu_mod.SSCXuAddon.powers.skills.WolfMergeAction;
 
 public class Init_Apoli {
     public static final PowerType<?> IronGolemFriendlyV1 = new PowerTypeReference<>(SSCXuAddon.identifier("iron_golem_friendly_v1"));  // 攻击铁傀儡是否会还击
@@ -64,6 +65,7 @@ public class Init_Apoli {
         WebBridgeAction.registerAction(Init_Apoli::registerEntityAction, Init_Apoli::registerBIEntityAction);
         MinionActions.registerAction(Init_Apoli::registerEntityAction, Init_Apoli::registerBIEntityAction);
         MagicUtils.registerAction(Init_Apoli::registerEntityAction, Init_Apoli::registerBIEntityAction);
+        WolfMergeAction.registerActions(Init_Apoli::registerEntityAction, Init_Apoli::registerBIEntityAction);
     }
 
 

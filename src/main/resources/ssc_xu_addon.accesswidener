@@ -6,3 +6,4 @@ accessible field net/minecraft/entity/ai/goal/ActiveTargetGoal targetClass Ljava
 accessible field net/minecraft/entity/ai/TargetPredicate predicate Ljava/util/function/Predicate;
 accessible field net/minecraft/entity/passive/PassiveEntity$PassiveData babyAllowed Z
 mutable field net/minecraft/entity/passive/PassiveEntity$PassiveData babyAllowed Z
+accessible method net/minecraft/entity/effect/StatusEffect <init> (Lnet/minecraft/entity/effect/StatusEffectCategory;I)V

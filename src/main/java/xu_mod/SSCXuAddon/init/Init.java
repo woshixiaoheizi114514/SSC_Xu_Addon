@@ -13,6 +13,7 @@ public class Init {
         Init_ManaType.init();
         Init_Apoli.init();
         Init_Event.init();
+        Init_Effect.init();
         ModPacketsServer.register();
     }
 }

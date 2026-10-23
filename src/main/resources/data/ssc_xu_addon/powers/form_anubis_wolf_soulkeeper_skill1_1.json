@@ -1,0 +1,30 @@
+{
+  "type": "apoli:active_self",
+  "cooldown": 1,
+  "condition": {
+    "type": "apoli:and",
+    "conditions": [
+      {
+        "type": "apoli:sneaking"
+      },
+      {
+        "type": "ssc_xu_addon:is_not_cooldown",
+        "cooldown_id": "ssc_xu_addon:anubis_wolf_soul_merge",
+        "cooldown_time": 1200
+      }
+    ]
+  },
+  "entity_action": {
+    "type": "ssc_xu_addon:wolf_merge",
+    "owner_action": {
+      "type": "ssc_xu_addon:trigger_cooldown",
+      "cooldown_id": "ssc_xu_addon:anubis_wolf_soul_merge"
+    }
+  },
+  "hud_render": {
+    "should_render": false
+  },
+  "key": {
+    "key": "key.shape-shifter-curse.active_skill_1"
+  }
+}

@@ -108,6 +108,9 @@ public class Init_ManaType {
     public static Identifier MC_ANUBIS_WOLF_SOUL_CAN_LOSE = ManaRegistries.registerManaConditionType(
             SSCXuAddon.identifier("anubis_wolf_soul_can_lose"),
             (player) -> {
+                if (player.hasStatusEffect(Init_Effect.SOUL_LOCK)) {
+                    return false;
+                }
                 double mana = ManaUtils.getPlayerMana(player) - 6;
                 double maxMana = ManaUtils.getPlayerMaxMana(player) - 6;
                 int floorMax = (int) Math.floor(maxMana);

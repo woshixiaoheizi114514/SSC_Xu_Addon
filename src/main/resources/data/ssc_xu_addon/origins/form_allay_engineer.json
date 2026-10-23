@@ -1,7 +1,9 @@
 {
   "powers_test": [
     "ssc_xu_addon:form_anubis_wolf_soulkeeper_mana",
-    "ssc_xu_addon:form_anubis_wolf_soulkeeper_skill1_0"
+    "ssc_xu_addon:form_anubis_wolf_soulkeeper_attribute",
+    "ssc_xu_addon:form_anubis_wolf_soulkeeper_skill1_0",
+    "ssc_xu_addon:form_anubis_wolf_soulkeeper_skill1_1"
   ],
   "powers": [
     "shape-shifter-curse:form_allay_sp_health",

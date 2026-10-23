@@ -5,6 +5,7 @@ import io.github.apace100.apoli.power.PowerType;
 import io.github.apace100.apoli.power.factory.PowerFactory;
 import io.github.apace100.calio.data.SerializableData;
 import io.github.apace100.calio.data.SerializableDataTypes;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.entity.attribute.EntityAttributeInstance;
@@ -12,9 +13,14 @@ import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.onixary.shapeShifterCurseFabric.mana.ManaUtils;
+import net.onixary.shapeShifterCurseFabric.minion.IPlayerEntityMinion;
 import xu_mod.SSCXuAddon.SSCXuAddon;
+import xu_mod.SSCXuAddon.data.entity.minion.SoulWolfMinion;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.UUID;
 
@@ -122,7 +128,35 @@ public class WolfSoulPower extends Power {
     }
 
     protected void onOverflowHeal(PlayerEntity player, float overflow) {
-        // TODO 将溢出治疗量分配给自身召唤狼灵
+        if (overflow <= 0) {
+            return;
+        }
+        if (!(player.getWorld() instanceof ServerWorld world)) {
+            return;
+        }
+        if (!(player instanceof IPlayerEntityMinion playerMinion)) {
+            return;
+        }
+        List<SoulWolfMinion> wolves = new ArrayList<>();
+        for (UUID uuid : playerMinion.shape_shifter_curse$getMinionsByMinionID(SoulWolfMinion.MinionID)) {
+            Entity e = world.getEntity(uuid);
+            if (e instanceof SoulWolfMinion wolf && wolf.isAlive()) {
+                wolves.add(wolf);
+            }
+        }
+        if (wolves.isEmpty()) {
+            return;
+        }
+        wolves.sort(Comparator.comparingDouble(w -> w.getHealth() / Math.max(1.0f, w.getMaxHealth())));
+        float remaining = overflow;
+        for (SoulWolfMinion wolf : wolves) {
+            if (remaining <= 0) break;
+            float missing = wolf.getMaxHealth() - wolf.getHealth();
+            if (missing <= 0) continue;
+            float toHeal = Math.min(remaining, missing);
+            wolf.heal(toHeal);
+            remaining -= toHeal;
+        }
     }
 
     private void updateAll(boolean force) {
