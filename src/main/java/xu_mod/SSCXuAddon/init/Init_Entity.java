@@ -35,12 +35,12 @@ public class Init_Entity {
     public static final EntityType<SoulWolfMinion> SOUL_WOLF_MINION = Registry.register(
             Registries.ENTITY_TYPE,
             SSCXuAddon.identifier("soul_wolf_minion"),
-            FabricEntityTypeBuilder.<SoulWolfMinion>create(SpawnGroup.MISC, SoulWolfMinion::new).dimensions(EntityDimensions.fixed(0.5f, 0.5f)).trackRangeChunks(10).build()
+            FabricEntityTypeBuilder.<SoulWolfMinion>create(SpawnGroup.MISC, SoulWolfMinion::new).dimensions(EntityDimensions.fixed(0.6f, 0.85f)).trackRangeChunks(10).build()
     );
 
 
     public static void init() {
         EntityAttributeRegister.register(SPIDER_MINION, SpiderMinion::createMobAttributes);
-        EntityAttributeRegister.register(SOUL_WOLF_MINION, SoulWolfMinion::createMobAttributes);
+        EntityAttributeRegister.register(SOUL_WOLF_MINION, SoulWolfMinion::createSoulWolfAttributes);
     }
 }

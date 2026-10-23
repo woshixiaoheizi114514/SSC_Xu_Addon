@@ -1,6 +1,7 @@
 package xu_mod.SSCXuAddon.data.entity.minion;
 
 import net.minecraft.entity.*;
+import net.minecraft.entity.ai.brain.MemoryModuleType;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.ai.pathing.PathNodeType;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
@@ -83,6 +84,12 @@ public class SoulWolfMinion extends WolfEntity implements IMinion<SoulWolfMinion
                 .add(EntityAttributes.GENERIC_ARMOR, 2.0);
     }
 
+    @Override
+    public void setTamed(boolean tamed) {
+        super.setTamed(tamed);
+        this.applyLevelAttributes(false);
+    }
+
     public void setMinionLevel(int level) {
         this.level = Math.max(1, Math.min(level, 4));
         this.applyLevelAttributes(true);
@@ -162,7 +169,7 @@ public class SoulWolfMinion extends WolfEntity implements IMinion<SoulWolfMinion
             default -> 12.0d;
         };
         health.setBaseValue(maxHealth);
-        if (fullHeal) {
+        if (fullHeal || this.getHealth() > (float) maxHealth) {
             this.setHealth((float) maxHealth);
         }
     }
@@ -212,6 +219,7 @@ public class SoulWolfMinion extends WolfEntity implements IMinion<SoulWolfMinion
             }
             ManaUtils.consumePlayerMana(owner, 1.0d);
         }
+        this.playSound(SoundEvents.BLOCK_ENCHANTMENT_TABLE_USE, 0.6f, 1.2f);
         this.level++;
         this.lifeTicks = 1200 + (this.level - 1) * 300;
         this.applyLevelAttributes(paid);
@@ -236,12 +244,17 @@ public class SoulWolfMinion extends WolfEntity implements IMinion<SoulWolfMinion
         this.dodgeCooldown = 200;
         this.addStatusEffect(new StatusEffectInstance(StatusEffects.INVISIBILITY, 80, 0, false, false));
         this.addStatusEffect(new StatusEffectInstance(StatusEffects.WEAKNESS, 80, 0, false, false));
+        this.addStatusEffect(new StatusEffectInstance(StatusEffects.GLOWING, 80, 0, false, false));
 
         PlayerEntity owner = this.getOwner();
         boolean ownerValid = owner != null && !owner.isDead() && this.squaredDistanceTo(owner) <= 16.0d * 16.0d;
         for (MobEntity mob : this.getWorld().getEntitiesByClass(MobEntity.class, this.getBoundingBox().expand(16.0d), m -> true)) {
             if (mob.getTarget() == this) {
                 mob.setTarget(ownerValid ? owner : null);
+                if (!ownerValid) {
+                    mob.targetSelector.getGoals().forEach(PrioritizedGoal::stop);
+                    mob.getBrain().forget(MemoryModuleType.ATTACK_TARGET);
+                }
             }
         }
     }
@@ -287,32 +300,31 @@ public class SoulWolfMinion extends WolfEntity implements IMinion<SoulWolfMinion
     // 被以前的自己给坑了 召唤物退出重进会消失 之后改一下 临时用特殊方式跳过一下判断吧
     @Override
     public void tick() {
-        if (!this.getWorld().isClient) {
-            if (this.isAlive() && !this.shouldExist()) {
+        if (!this.getWorld().isClient && this.isAlive()) {
+            if (!this.shouldExist()) {
                 this.naturalDeath = true;
                 this.kill();
-                return;
-            }
-            if (this.dodgeCooldown > 0) {
-                this.dodgeCooldown--;
-            }
-            PlayerEntity owner = this.getOwner();
-            if (this.lifeTicks > 0) {
-                int decay = (owner == null) ? 10 : 1;
-                this.lifeTicks -= decay;
-            }
-            if (this.lifeTicks <= 0) {
-                if (owner != null) {
-                    ManaUtils.gainPlayerMana(owner, this.level);
+            } else {
+                if (this.dodgeCooldown > 0) {
+                    this.dodgeCooldown--;
                 }
-                this.naturalDeath = true;
-                this.kill();
-                return;
-            }
-            this.soulUpdateTimer++;
-            if (this.soulUpdateTimer >= 20) {
-                this.soulUpdateTimer = 0;
-                this.updateSoulAttributes();
+                if (this.lifeTicks > 0) {
+                    PlayerEntity owner = this.getOwner();
+                    int decay = (owner == null) ? 10 : 1;
+                    this.lifeTicks -= decay;
+                    if (this.lifeTicks <= 0) {
+                        if (owner != null) {
+                            ManaUtils.gainPlayerMana(owner, this.level);
+                        }
+                        this.naturalDeath = true;
+                        this.kill();
+                    }
+                }
+                this.soulUpdateTimer++;
+                if (this.soulUpdateTimer >= 20) {
+                    this.soulUpdateTimer = 0;
+                    this.updateSoulAttributes();
+                }
             }
         }
         super.tick();
@@ -334,7 +346,8 @@ public class SoulWolfMinion extends WolfEntity implements IMinion<SoulWolfMinion
         }
         if (owner instanceof IPlayerEntityMinion iPlayerEntityMinion) {
             if (!iPlayerEntityMinion.shape_shifter_curse$minionExist(this.getMinionTypeID(), this.getUuid())) {
-                iPlayerEntityMinion.shape_shifter_curse$addMinion(this);
+                // 不能直接添加 会导致重复驯服 一直回满血 看起来真得改一下召唤物系统了 至少得加个持久性召唤物
+                iPlayerEntityMinion.shape_shifter_curse$getMinionsByMinionID(this.getMinionTypeID()).add(this.getUuid());
             }
             return true;
         }
@@ -387,6 +400,11 @@ public class SoulWolfMinion extends WolfEntity implements IMinion<SoulWolfMinion
         }
         this.setOwnerUuid(null);
         super.onDeath(source);
+    }
+
+    @Override
+    public boolean shouldDropXp() {
+        return false;
     }
 
     @Override

@@ -1,0 +1,21 @@
+{
+  "type": "apoli:active_self",
+  "cooldown": 1,
+
+  "condition": {
+    "type": "apoli:sneaking",
+    "inverted": true
+  },
+
+  "entity_action": {
+    "type": "ssc_xu_addon:summon_soul_wolf",
+    "max_minion_count": 4,
+    "cooldown": 200
+  },
+  "hud_render": {
+    "should_render": false
+  },
+  "key": {
+    "key": "key.shape-shifter-curse.active_skill_1"
+  }
+}
