@@ -5,7 +5,10 @@ import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.minecraft.client.render.entity.model.EntityModelLayer;
+import net.onixary.shapeShifterCurseFabric.minion.mobs.AnubisWolfMinionEntityModel;
 import xu_mod.SSCXuAddon.SSCXuAddon;
+import xu_mod.SSCXuAddon.data.entity.minion.SoulWolfMinion;
+import xu_mod.SSCXuAddon.data.entity.minion.SoulWolfMinionRenderer;
 import xu_mod.SSCXuAddon.data.entity.minion.SpiderMinionRenderer;
 import xu_mod.SSCXuAddon.data.entity.projectiles.BloodThornEntItyRenderer;
 import xu_mod.SSCXuAddon.data.entity.projectiles.SummonTridentModel;
@@ -15,13 +18,16 @@ import xu_mod.SSCXuAddon.init.Init_Entity;
 @Environment(EnvType.CLIENT)
 public class Init_EntityRenderer {
     public static final EntityModelLayer SUMMON_TRIDENT_LAYER = new EntityModelLayer(SSCXuAddon.identifier("summon_trident"), "main");
+    public static final EntityModelLayer SOUL_WOLF_MINION_LAYER = new EntityModelLayer(SoulWolfMinion.MinionID, "main");
 
     static {
         EntityRendererRegistry.register(Init_Entity.BLOOD_THORN, BloodThornEntItyRenderer::new);
         EntityModelLayerRegistry.registerModelLayer(SUMMON_TRIDENT_LAYER, SummonTridentModel::getTexturedModelData);
         EntityRendererRegistry.register(Init_Entity.SUMMON_TRIDENT, SummonTridentRenderer::new);
         EntityRendererRegistry.register(Init_Entity.SPIDER_MINION, SpiderMinionRenderer::new);
+        EntityRendererRegistry.register(Init_Entity.SOUL_WOLF_MINION, SoulWolfMinionRenderer::new);
+        EntityModelLayerRegistry.registerModelLayer(SOUL_WOLF_MINION_LAYER, AnubisWolfMinionEntityModel::getTexturedModelData);
     }
 
-    public static void init() {}
+    public static void init() { }
 }

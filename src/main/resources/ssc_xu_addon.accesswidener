@@ -4,3 +4,5 @@ accessible field net/minecraft/entity/mob/MobEntity targetSelector Lnet/minecraf
 accessible field net/minecraft/entity/ai/goal/ActiveTargetGoal targetPredicate Lnet/minecraft/entity/ai/TargetPredicate;
 accessible field net/minecraft/entity/ai/goal/ActiveTargetGoal targetClass Ljava/lang/Class;
 accessible field net/minecraft/entity/ai/TargetPredicate predicate Ljava/util/function/Predicate;
+accessible field net/minecraft/entity/passive/PassiveEntity$PassiveData babyAllowed Z
+mutable field net/minecraft/entity/passive/PassiveEntity$PassiveData babyAllowed Z

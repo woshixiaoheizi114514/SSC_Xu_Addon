@@ -8,6 +8,7 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.onixary.shapeShifterCurseFabric.util.EntityAttributeRegister;
 import xu_mod.SSCXuAddon.SSCXuAddon;
+import xu_mod.SSCXuAddon.data.entity.minion.SoulWolfMinion;
 import xu_mod.SSCXuAddon.data.entity.minion.SpiderMinion;
 import xu_mod.SSCXuAddon.data.entity.projectiles.BloodThornEntity;
 import xu_mod.SSCXuAddon.data.entity.projectiles.SummonTrident;
@@ -31,8 +32,15 @@ public class Init_Entity {
             FabricEntityTypeBuilder.<SpiderMinion>create(SpawnGroup.MISC, SpiderMinion::new).dimensions(EntityDimensions.fixed(0.7f, 0.5f)).trackRangeChunks(10).build()
     );
 
+    public static final EntityType<SoulWolfMinion> SOUL_WOLF_MINION = Registry.register(
+            Registries.ENTITY_TYPE,
+            SSCXuAddon.identifier("soul_wolf_minion"),
+            FabricEntityTypeBuilder.<SoulWolfMinion>create(SpawnGroup.MISC, SoulWolfMinion::new).dimensions(EntityDimensions.fixed(0.5f, 0.5f)).trackRangeChunks(10).build()
+    );
+
+
     public static void init() {
         EntityAttributeRegister.register(SPIDER_MINION, SpiderMinion::createMobAttributes);
+        EntityAttributeRegister.register(SOUL_WOLF_MINION, SoulWolfMinion::createMobAttributes);
     }
-
 }
