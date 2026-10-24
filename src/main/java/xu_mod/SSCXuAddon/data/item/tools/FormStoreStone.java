@@ -57,7 +57,7 @@ public class FormStoreStone extends Item {
             if (Init_Form.NoFormStoreStone.hasFlag(form)) {
                 return stack;
             }
-            if (storedForm != null && RegPlayerForms.ORIGINAL_SHIFTER.isPlayerForm(player)) {
+            if (storedForm != null && !RegPlayerForms.ORIGINAL_SHIFTER.isPlayerForm(player)) {
                 TransformManager.startTransform(player, storedForm, null);
                 setStoredForm(stack, form);
             } else if (storedForm == null && !RegPlayerForms.ORIGINAL_SHIFTER.isPlayerForm(player)) {
