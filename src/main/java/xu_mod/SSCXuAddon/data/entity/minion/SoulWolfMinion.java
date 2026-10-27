@@ -75,7 +75,7 @@ public class SoulWolfMinion extends WolfEntity implements IMinion<SoulWolfMinion
         this.goalSelector.add(10, new LookAroundGoal(this));
         this.targetSelector.add(1, new TrackOwnerAttackerGoal(this));
         this.targetSelector.add(2, new AttackWithOwnerGoal(this));
-        this.targetSelector.add(3, new ActiveTargetGoal<>(this, HostileEntity.class, false));
+        this.targetSelector.add(3, new ActiveTargetGoal<>(this, HostileEntity.class, false, this::isTargetNearOwner));
     }
 
     public static DefaultAttributeContainer.Builder createSoulWolfAttributes() {
@@ -362,6 +362,14 @@ public class SoulWolfMinion extends WolfEntity implements IMinion<SoulWolfMinion
 
     public double getMinionDisappearRange() {
         return 32.0d * 32.0d;
+    }
+
+    private boolean isTargetNearOwner(LivingEntity target) {
+        PlayerEntity owner = this.getOwner();
+        if (owner == null) {
+            return false;
+        }
+        return owner.squaredDistanceTo(target) <= 144.0d; // 12x12
     }
 
     @Override
