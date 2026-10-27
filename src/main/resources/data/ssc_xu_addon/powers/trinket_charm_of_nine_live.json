@@ -1,9 +1,10 @@
 {
   "type": "apoli:attribute",
+  "__comment__": "SSC Bug Keep This Power Until I Fix This Bug",
   "modifier": {
-    "name": "4 health reduction",
+    "name": "0 health reduction",
     "attribute": "minecraft:generic.max_health",
-    "value": -4.0,
+    "value": 0,
     "operation": "addition"
   }
 }
