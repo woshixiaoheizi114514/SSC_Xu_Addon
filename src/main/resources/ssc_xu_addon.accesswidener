@@ -7,3 +7,4 @@ accessible field net/minecraft/entity/ai/TargetPredicate predicate Ljava/util/fu
 accessible field net/minecraft/entity/passive/PassiveEntity$PassiveData babyAllowed Z
 mutable field net/minecraft/entity/passive/PassiveEntity$PassiveData babyAllowed Z
 accessible method net/minecraft/entity/effect/StatusEffect <init> (Lnet/minecraft/entity/effect/StatusEffectCategory;I)V
+accessible field net/minecraft/entity/mob/CreeperEntity currentFuseTime I

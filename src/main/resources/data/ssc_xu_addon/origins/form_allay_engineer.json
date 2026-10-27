@@ -1,12 +1,5 @@
 {
-  "powers_test": [
-    "ssc_xu_addon:form_anubis_wolf_soulkeeper_mana",
-    "ssc_xu_addon:form_anubis_wolf_soulkeeper_attribute",
-    "ssc_xu_addon:form_anubis_wolf_soulkeeper_skill1_0",
-    "ssc_xu_addon:form_anubis_wolf_soulkeeper_skill1_1"
-  ],
   "powers": [
-    "shape-shifter-curse:form_allay_sp_health",
     "shape-shifter-curse:form_force_disable_leg_armor",
     "shape-shifter-curse:form_force_disable_feet_armor",
     "shape-shifter-curse:form_allay_sp_walk_on_powder_snow",
@@ -22,6 +15,7 @@
     "shape-shifter-curse:velvet_paws",
     "shape-shifter-curse:slow_falling",
 
+    "ssc_xu_addon:form_allay_engineer_health",
     "ssc_xu_addon:form_allay_engineer_mana_bar",
     "ssc_xu_addon:form_allay_engineer_power",
     "ssc_xu_addon:form_allay_engineer_space_bag",

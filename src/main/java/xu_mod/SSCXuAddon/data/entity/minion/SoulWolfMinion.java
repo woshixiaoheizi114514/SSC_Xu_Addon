@@ -12,6 +12,8 @@ import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.AbstractSkeletonEntity;
+import net.minecraft.entity.mob.CreeperEntity;
+import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.passive.WolfEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -73,7 +75,7 @@ public class SoulWolfMinion extends WolfEntity implements IMinion<SoulWolfMinion
         this.goalSelector.add(10, new LookAroundGoal(this));
         this.targetSelector.add(1, new TrackOwnerAttackerGoal(this));
         this.targetSelector.add(2, new AttackWithOwnerGoal(this));
-        this.targetSelector.add(3, new ActiveTargetGoal<>(this, AbstractSkeletonEntity.class, false));
+        this.targetSelector.add(3, new ActiveTargetGoal<>(this, HostileEntity.class, false));
     }
 
     public static DefaultAttributeContainer.Builder createSoulWolfAttributes() {
@@ -267,6 +269,10 @@ public class SoulWolfMinion extends WolfEntity implements IMinion<SoulWolfMinion
             if (heal > 0.0d) {
                 this.heal((float) heal);
             }
+        }
+        // 凑活整个抑制爆炸吧 不同步到客户端了
+        if (target instanceof CreeperEntity creeper) {
+            creeper.currentFuseTime = 0;
         }
         return success;
     }

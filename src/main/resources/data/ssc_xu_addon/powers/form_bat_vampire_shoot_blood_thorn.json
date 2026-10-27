@@ -5,7 +5,7 @@
     "actions": [
       {
         "type": "ssc_xu_addon:shoot_blood_thorn",
-        "damage": 3.0,
+        "damage": 4.0,
         "speed": 2.5,
         "extra_thorn_count": 4,
         "extra_thorn_circle_range": 1.0,

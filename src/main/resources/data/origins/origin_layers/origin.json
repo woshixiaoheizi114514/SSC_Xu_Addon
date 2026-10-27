@@ -9,7 +9,8 @@
     "ssc_xu_addon:form_allay_engineer",
     "ssc_xu_addon:form_ocelot_jungle",
     "ssc_xu_addon:form_axolotl_sea_king",
-    "ssc_xu_addon:form_spider_undead"
+    "ssc_xu_addon:form_spider_undead",
+    "ssc_xu_addon:form_anubis_wolf_soulkeeper"
   ],
   "allow_random": true,
   "exclude_random": [

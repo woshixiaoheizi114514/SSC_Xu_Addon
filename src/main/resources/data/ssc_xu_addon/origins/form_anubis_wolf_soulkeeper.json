@@ -1,0 +1,41 @@
+{
+  "powers": [
+    "shape-shifter-curse:form_anubis_wolf_twolf_friendly",
+    "shape-shifter-curse:form_anubis_wolf_can_eat_bone",
+    "shape-shifter-curse:hunger_immunity",
+    "shape-shifter-curse:poison_immunity",
+    "shape-shifter-curse:form_anubis_wolf_rotten_flesh_up",
+    "shape-shifter-curse:form_anubis_wolf_3_vegetarian_saturation_down",
+    "shape-shifter-curse:form_anubis_wolf_3_reverse_instant_damage",
+    "shape-shifter-curse:form_anubis_wolf_3_soul_speed",
+    "shape-shifter-curse:form_anubis_wolf_3_food_heal_slower",
+    "shape-shifter-curse:form_anubis_wolf_3_meat_to_rotten_flesh",
+    "shape-shifter-curse:form_anubis_wolf_3_crop_to_sand",
+    "shape-shifter-curse:form_anubis_wolf_3_meat_to_rotten_flesh",
+    "shape-shifter-curse:form_anubis_wolf_3_crop_to_sand",
+    "shape-shifter-curse:scare_skeleton",
+    "shape-shifter-curse:no_hurt_pet",
+    "shape-shifter-curse:form_anubis_wolf_sound_key",
+    "shape-shifter-curse:undead_group",
+
+    "shape-shifter-curse:form_tan_prevent_dirty_water_thirst",
+    "shape-shifter-curse:form_tan_hot_resistance_mild",
+
+    "shape-shifter-curse:form_anubis_wolf_3_meat_to_rotten_flesh",
+    "shape-shifter-curse:form_anubis_wolf_3_crop_to_sand",
+
+    "ssc_xu_addon:form_anubis_wolf_soulkeeper_mana",
+    "ssc_xu_addon:form_anubis_wolf_soulkeeper_attribute",
+    "ssc_xu_addon:form_anubis_wolf_soulkeeper_skill1_0"
+  ],
+  "powers_perk": [
+    "__comment__: 这个是标一下这个技能是Perk技能 游戏是不会读的 只是用来提醒我记得挂上",
+    "ssc_xu_addon:form_anubis_wolf_soulkeeper_skill1_1"
+  ],
+  "icon": {
+    "item": "minecraft:player_head"
+  },
+  "order": 0,
+  "unchoosable": true,
+  "impact": 0
+}
