@@ -9,9 +9,9 @@ import io.github.apace100.apoli.registry.ApoliRegistries;
 import net.minecraft.entity.Entity;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Pair;
-import net.onixary.shapeShifterCurseFabric.ShapeShifterCurseFabric;
 import xu_mod.SSCXuAddon.SSCXuAddon;
 import xu_mod.SSCXuAddon.powers.*;
+import xu_mod.SSCXuAddon.powers.skills.WolfSoulAction;
 import xu_mod.SSCXuAddon.powers.magic.MagicUtils;
 import xu_mod.SSCXuAddon.powers.skills.OcelotRush1Power;
 import xu_mod.SSCXuAddon.powers.skills.WolfMergeAction;
@@ -66,6 +66,7 @@ public class Init_Apoli {
         MinionActions.registerAction(Init_Apoli::registerEntityAction, Init_Apoli::registerBIEntityAction);
         MagicUtils.registerAction(Init_Apoli::registerEntityAction, Init_Apoli::registerBIEntityAction);
         WolfMergeAction.registerActions(Init_Apoli::registerEntityAction, Init_Apoli::registerBIEntityAction);
+        WolfSoulAction.registerActions(Init_Apoli::registerEntityAction, Init_Apoli::registerBIEntityAction);
     }
 
 

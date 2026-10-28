@@ -9,10 +9,6 @@
     "shape-shifter-curse:form_anubis_wolf_3_reverse_instant_damage",
     "shape-shifter-curse:form_anubis_wolf_3_soul_speed",
     "shape-shifter-curse:form_anubis_wolf_3_food_heal_slower",
-    "shape-shifter-curse:form_anubis_wolf_3_meat_to_rotten_flesh",
-    "shape-shifter-curse:form_anubis_wolf_3_crop_to_sand",
-    "shape-shifter-curse:form_anubis_wolf_3_meat_to_rotten_flesh",
-    "shape-shifter-curse:form_anubis_wolf_3_crop_to_sand",
     "shape-shifter-curse:scare_skeleton",
     "shape-shifter-curse:no_hurt_pet",
     "shape-shifter-curse:form_anubis_wolf_sound_key",
@@ -26,6 +22,9 @@
 
     "ssc_xu_addon:form_anubis_wolf_soulkeeper_mana",
     "ssc_xu_addon:form_anubis_wolf_soulkeeper_attribute",
+    "ssc_xu_addon:form_anubis_wolf_soulkeeper_gain_soul",
+    "ssc_xu_addon:form_anubis_wolf_soulkeeper_lose_soul",
+    "ssc_xu_addon:form_anubis_wolf_soulkeeper_looting",
     "ssc_xu_addon:form_anubis_wolf_soulkeeper_skill1_0"
   ],
   "powers_perk": [

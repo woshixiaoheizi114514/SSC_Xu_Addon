@@ -1,0 +1,43 @@
+{
+  "type": "apoli:multiple",
+  "looting1": {
+    "type": "shape-shifter-curse:simple_looting",
+    "level": 1,
+    "condition": {
+      "type": "shape-shifter-curse:has_mana",
+      "mana": 9
+    }
+  },
+  "looting2": {
+    "type": "shape-shifter-curse:simple_looting",
+    "level": 1,
+    "condition": {
+      "type": "shape-shifter-curse:has_mana",
+      "mana": 12
+    }
+  },
+  "looting3": {
+    "type": "shape-shifter-curse:simple_looting",
+    "level": 1,
+    "condition": {
+      "type": "shape-shifter-curse:has_mana",
+      "mana": 15
+    }
+  },
+  "looting4": {
+    "type": "shape-shifter-curse:simple_looting",
+    "level": 1,
+    "condition": {
+      "type": "shape-shifter-curse:has_mana",
+      "mana": 18
+    }
+  },
+  "looting5": {
+    "type": "shape-shifter-curse:simple_looting",
+    "level": 1,
+    "condition": {
+      "type": "shape-shifter-curse:has_mana",
+      "mana": 21
+    }
+  }
+}
