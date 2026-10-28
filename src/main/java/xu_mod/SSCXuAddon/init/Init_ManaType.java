@@ -94,7 +94,7 @@ public class Init_ManaType {
     public static Identifier MC_ANUBIS_WOLF_SOUL_CAN_REGEN = ManaRegistries.registerManaConditionType(
             SSCXuAddon.identifier("anubis_wolf_soul_can_regen"),
             (player) -> {
-                return ManaUtils.getPlayerMana(player) < 6;
+                return ManaUtils.getPlayerMana(player) <= 6;
             }
     );
 
