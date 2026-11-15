@@ -229,7 +229,7 @@ public class SpiderMinion extends SpiderEntity implements IMinion<SpiderMinion>,
                 if (entity instanceof SpiderMinion) {
                     return false;
                 }
-                return true;
+                return entity.isAlive() && !entity.isRemoved() && !entity.isSpectator();
             })) {
                 entity.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 100, 2));
                 entity.addStatusEffect(new StatusEffectInstance(StatusEffects.WEAKNESS, 50, 2));

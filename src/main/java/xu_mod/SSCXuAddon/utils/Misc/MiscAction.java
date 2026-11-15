@@ -20,6 +20,9 @@ public class MiscAction {
         Vec3d explosionPos = targetEntity.getPos();
         @Nullable Entity finalOwner = Owner;
         for (LivingEntity entity : explosionOwner.getWorld().getEntitiesByClass(LivingEntity.class, targetEntity.getBoundingBox().expand(Range), e -> e != explosionOwner && e != finalOwner)) {
+            if (!entity.isAlive() || entity.isRemoved() || entity.isSpectator()) {
+                continue;
+            }
             Vec3d direction = entity.getPos().subtract(explosionPos);
             double distance = direction.length();
             if (distance > Range) {

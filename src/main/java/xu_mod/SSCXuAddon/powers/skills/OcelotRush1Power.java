@@ -102,6 +102,7 @@ public class OcelotRush1Power extends ActiveCooldownPower {
                 }
                 entity.getWorld().playSound(null, this.entity.getX(), this.entity.getY(), this.entity.getZ(), SoundEvents.ENTITY_GENERIC_EXPLODE, SoundCategory.PLAYERS, 0.5f, 1.0f);
                 serverWorld.getOtherEntities(this.entity, expandedBox).forEach(entity -> {
+                    if (!entity.isAlive() || entity.isRemoved() || entity.isSpectator()) return;
                     if (entity instanceof LivingEntity livingEntity) {
                         livingEntity.damage(serverWorld.getDamageSources().explosion(this.entity, this.entity), smallExplosionDamage);
                     }

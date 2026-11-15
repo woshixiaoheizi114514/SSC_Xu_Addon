@@ -80,7 +80,7 @@ public class FireRingAction {
                         entities.addAll(world.getOtherEntities(
                                 player,
                                 new Box(particlePos.add(-RingDamageSize, 0, -RingDamageSize), particlePos.add(RingDamageSize, 0.5f, RingDamageSize)),
-                                entity -> true)
+                                entity -> entity.isAlive() && !entity.isRemoved() && !entity.isSpectator())
                         );
                     }
                 }

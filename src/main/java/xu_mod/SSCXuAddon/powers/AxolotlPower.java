@@ -119,6 +119,7 @@ public class AxolotlPower {
                     return;
                 }
                 for (LivingEntity entity : this.entity.getWorld().getEntitiesByClass(LivingEntity.class, this.entity.getBoundingBox().expand(nRadius), e -> e != this.entity)) {
+                    if (!entity.isAlive() || entity.isRemoved() || entity.isSpectator()) continue;
                     Vec3d direction = entity.getPos().subtract(this.entity.getPos());
                     double distance = direction.length();
                     if (distance > nRadius) {

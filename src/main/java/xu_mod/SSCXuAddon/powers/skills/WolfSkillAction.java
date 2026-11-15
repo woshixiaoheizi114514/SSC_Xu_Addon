@@ -76,7 +76,7 @@ public class WolfSkillAction {
         double countFactor = countBase + countWeight / (1.0d + countSlope * (count - 1));
 
         for (LivingEntity target : targets) {
-            if (!target.isAlive()) {
+            if (!target.isAlive() || target.isRemoved() || target.isSpectator()) {
                 continue;
             }
             double distance = target.distanceTo(player);
@@ -177,7 +177,7 @@ public class WolfSkillAction {
         double wolfFactor = 0.5d + 0.5d * wolves.size();
 
         for (LivingEntity target : targets) {
-            if (!target.isAlive()) {
+            if (!target.isAlive() || target.isRemoved() || target.isSpectator()) {
                 continue;
             }
             double targetBaseHealth = Math.min(playerHealth * wolfFactor, target.getMaxHealth());
